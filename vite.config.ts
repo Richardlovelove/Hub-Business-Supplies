@@ -10,8 +10,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // jsPDF pesa más que toda la aplicación: en su propio chunk la
-        // pantalla carga sin esperarlo.
+        // jsPDF pesa más que toda la aplicación: en su propio paquete, la
+        // pantalla se dibuja sin tener que analizarlo ni ejecutarlo.
         manualChunks: (id) => (/node_modules\/jspdf/.test(id) ? 'pdf' : undefined),
       },
     },

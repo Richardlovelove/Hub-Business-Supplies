@@ -1,8 +1,10 @@
 /**
  * Salidas de la cotización: PDF, WhatsApp y portapapeles.
  *
- * jsPDF y su tabla pesan bastante más que el resto de la aplicación, así que
- * se cargan cuando alguien pide un PDF y no al abrir la pantalla.
+ * jsPDF y su tabla pesan bastante más que el resto de la aplicación. Al
+ * importarlos aquí de forma dinámica quedan en un paquete aparte, y la
+ * pantalla se dibuja sin tener que analizarlos ni ejecutarlos; el navegador
+ * los descarga en segundo plano para que el primer PDF salga sin espera.
  */
 
 import { IVA } from '../dominio/catalogo';

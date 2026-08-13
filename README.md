@@ -48,6 +48,28 @@ subdirectorio de byslogistics.com.co o abrir directamente desde el disco.
 
 ---
 
+## Enlace de previsualización
+
+Cada empuje a `main` o a la rama de trabajo publica el cotizador en GitHub
+Pages:
+
+**https://richardlovelove.github.io/Cotizador-Business-Supplies/**
+
+Para activarlo, una sola vez: **Settings → Pages → Source: GitHub Actions**.
+
+El flujo está en `.github/workflows/pages.yml` y corre las pruebas y la
+comprobación de tipos antes de publicar, así que una versión rota no llega al
+enlace. También se puede lanzar a mano desde la pestaña **Actions**
+(«Publicar cotizador» → *Run workflow*).
+
+> Si el paso «Publicar» falla diciendo que la rama no está permitida, es la
+> protección del entorno `github-pages`, que de fábrica sólo acepta la rama
+> por defecto. Se arregla en **Settings → Environments → github-pages →
+> Deployment branches**, añadiendo la rama; o publicando desde `main` una vez
+> fusionado.
+
+---
+
 ## Actualizar los precios
 
 Los precios **no se editan en el código**. La fuente sigue siendo el Excel que
