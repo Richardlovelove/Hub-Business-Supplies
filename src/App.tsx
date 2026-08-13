@@ -32,7 +32,8 @@ import { useCotizacion } from './ui/useCotizacion';
 type Panel = 'catalogo' | 'cotizacion';
 
 export default function App() {
-  const { cotizacion, despachar, totales, productosEnUso } = useCotizacion();
+  const { cotizacion, despachar, totales, productosEnUso, revision, alertasPorLinea } =
+    useCotizacion();
   const [verMargen, setVerMargen] = useState(false);
   const [aviso, setAviso] = useState('');
   const [panel, setPanel] = useState<Panel>('catalogo');
@@ -162,6 +163,16 @@ export default function App() {
             panel === 'cotizacion' ? 'block' : 'hidden'
           }`}
         >
+          {revision.graves > 0 ? (
+            <AvisoPreciosDesactualizados
+              lineas={revision.graves}
+              alActualizar={() => {
+                despachar({ tipo: 'actualizarPrecios' });
+                anunciar('Precios actualizados con el listado vigente.');
+              }}
+            />
+          ) : null}
+
           <DatosCliente cotizacion={cotizacion} despachar={despachar} />
           <DatosOferta cotizacion={cotizacion} despachar={despachar} />
 
@@ -179,10 +190,16 @@ export default function App() {
               </label>
             }
           >
-            <TablaLineas lineas={cotizacion.lineas} despachar={despachar} verMargen={verMargen} />
+            <TablaLineas
+              lineas={cotizacion.lineas}
+              despachar={despachar}
+              iva={cotizacion.iva}
+              alertasPorLinea={alertasPorLinea}
+              verMargen={verMargen}
+            />
           </Seccion>
 
-          <ResumenTotales totales={totales} />
+          <ResumenTotales totales={totales} iva={cotizacion.iva} />
           <PanelCondiciones cotizacion={cotizacion} despachar={despachar} />
 
           {/* Las acciones secundarias, que en móvil no caben en la barra. */}
@@ -321,6 +338,38 @@ function BarraMovil({
         </button>
       </div>
     </section>
+  );
+}
+
+/**
+ * Aviso de que la cotización quedó desalineada del listado.
+ *
+ * Va arriba y en rojo porque el caso que cubre es silencioso: se reabre un
+ * borrador de la semana pasada, el catálogo se regeneró entre medias, y sin
+ * esto la oferta sale al precio viejo sin que nada lo advierta.
+ */
+function AvisoPreciosDesactualizados({
+  lineas,
+  alActualizar,
+}: {
+  lineas: number;
+  alActualizar: () => void;
+}) {
+  return (
+    <div className="rounded-2xl border border-red-200 bg-red-50 p-5">
+      <p className="text-sm font-bold text-red-800">
+        {lineas === 1
+          ? 'Una referencia no coincide con el listado de precios vigente.'
+          : `${lineas} referencias no coinciden con el listado de precios vigente.`}
+      </p>
+      <p className="mt-1 text-sm text-red-700">
+        Puede que el listado se haya actualizado después de armar esta cotización. Revise las
+        líneas marcadas antes de enviarla.
+      </p>
+      <button type="button" className="boton-primario mt-3" onClick={alActualizar}>
+        Actualizar precios con el listado vigente
+      </button>
+    </div>
   );
 }
 

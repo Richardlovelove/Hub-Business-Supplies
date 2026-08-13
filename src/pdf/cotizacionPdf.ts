@@ -25,7 +25,6 @@ const Y_CONTENIDO = ALTO_CABECERA + 10;
 const ANCHO_LOGO = 44;
 
 export interface OpcionesPdf {
-  iva: number;
   /** Añade una marca de agua diagonal, para revisiones internas. */
   borrador?: boolean;
 }
@@ -34,7 +33,7 @@ export interface OpcionesPdf {
  * Construye el documento y lo devuelve. Quien llama decide qué hacer con él:
  * descargarlo, abrirlo en otra pestaña o adjuntarlo.
  */
-export function construirPdf(cotizacion: Cotizacion, opciones: OpcionesPdf): jsPDF {
+export function construirPdf(cotizacion: Cotizacion, opciones: OpcionesPdf = {}): jsPDF {
   const doc = new jsPDF({ unit: 'mm', format: 'a4', compress: true });
 
   doc.setProperties({
@@ -44,12 +43,15 @@ export function construirPdf(cotizacion: Cotizacion, opciones: OpcionesPdf): jsP
     creator: `Cotizador ${EMPRESA.nombreComercial}`,
   });
 
-  const totales = totalesDeCotizacion(cotizacion.lineas, opciones.iva);
+  // La tarifa sale del documento, no del catálogo: una cotización emitida
+  // conserva sus totales aunque el IVA cambie después.
+  const iva = cotizacion.iva;
+  const totales = totalesDeCotizacion(cotizacion.lineas, iva);
   const hayDescuento = totales.descuento > 0;
 
   let y = bloqueDatos(doc, cotizacion, Y_CONTENIDO);
-  y = tablaDeItems(doc, cotizacion, opciones, hayDescuento, y);
-  y = bloqueTotales(doc, totales, hayDescuento, opciones.iva, y);
+  y = tablaDeItems(doc, cotizacion, iva, hayDescuento, y);
+  y = bloqueTotales(doc, totales, hayDescuento, iva, y);
   y = bloqueCondiciones(doc, cotizacion, y);
   bloqueCierre(doc, cotizacion, y);
 
@@ -241,7 +243,7 @@ function bloqueDatos(doc: jsPDF, cotizacion: Cotizacion, y: number): number {
 function tablaDeItems(
   doc: jsPDF,
   cotizacion: Cotizacion,
-  opciones: OpcionesPdf,
+  iva: number,
   hayDescuento: boolean,
   y: number,
 ): number {
@@ -255,7 +257,7 @@ function tablaDeItems(
   ];
 
   const cuerpo = cotizacion.lineas.map((linea, indice) => {
-    const t = totalesDeLinea(linea, opciones.iva);
+    const t = totalesDeLinea(linea, iva);
     return [
       String(indice + 1),
       descripcionDeLinea(linea),
@@ -356,7 +358,11 @@ function bloqueTotales(
     ...(hayDescuento
       ? ([['Descuento', `- ${pesos(totales.descuento)}`]] as [string, string][])
       : []),
-    [`IVA ${Math.round(iva * 100)}%`, pesos(totales.iva)],
+    // Una fila «IVA 0%: $ 0» parece un error de cálculo. Cuando la operación
+    // no lleva IVA se dice con palabras, bajo el total.
+    ...(iva > 0
+      ? ([[`IVA ${Math.round(iva * 10000) / 100}%`, pesos(totales.iva)]] as [string, string][])
+      : []),
   ];
 
   const altoFila = 6;
@@ -397,7 +403,17 @@ function bloqueTotales(
     alineacion: 'right',
   });
 
-  return yActual + altoTotal + 9;
+  yActual += altoTotal;
+
+  if (iva === 0) {
+    yActual = escribir(doc, 'Operación no gravada con IVA.', x + ancho, yActual + 4, {
+      tamano: 7.5,
+      color: COLOR.textoSuave,
+      alineacion: 'right',
+    });
+  }
+
+  return yActual + 9;
 }
 
 function bloqueCondiciones(doc: jsPDF, cotizacion: Cotizacion, y: number): number {

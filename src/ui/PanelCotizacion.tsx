@@ -2,7 +2,6 @@
 
 import { CIUDADES_CON_FLETE, ASESORES } from '../datos/empresa';
 import { NOTAS_FRECUENTES, PLANTILLAS } from '../datos/condiciones';
-import { IVA } from '../dominio/catalogo';
 import { fechaLarga, pesos, sumarDias, unidades } from '../dominio/formato';
 import type { Cotizacion, FormaPago, TotalesCotizacion } from '../dominio/tipos';
 import { CampoNumero, CampoSelect, CampoTexto, Seccion } from './componentes';
@@ -79,6 +78,22 @@ export function DatosCliente({
   );
 }
 
+/**
+ * Tratamientos de IVA de uso corriente. El valor es la fracción que se guarda
+ * en la cotización; `null` significa «otra tarifa», que abre el campo libre
+ * para vender desde otro país o aplicar un régimen distinto.
+ */
+const TRATAMIENTOS: readonly { clave: string; texto: string; tarifa: number | null }[] = [
+  { clave: 'nacional', texto: 'Venta nacional · IVA 19%', tarifa: 0.19 },
+  { clave: 'sin-iva', texto: 'Exportación o venta no gravada · sin IVA', tarifa: 0 },
+  { clave: 'otra', texto: 'Otra tarifa…', tarifa: null },
+];
+
+/** Deduce el tratamiento a partir de la tarifa guardada, sin estado extra. */
+function tratamientoDe(iva: number): string {
+  return TRATAMIENTOS.find((t) => t.tarifa === iva)?.clave ?? 'otra';
+}
+
 export function DatosOferta({
   cotizacion,
   despachar,
@@ -86,6 +101,8 @@ export function DatosOferta({
   cotizacion: Cotizacion;
   despachar: Despachar;
 }) {
+  const tratamiento = tratamientoDe(cotizacion.iva);
+
   return (
     <Seccion titulo="Datos de la oferta">
       <div className="grid gap-3 sm:grid-cols-3">
@@ -112,6 +129,48 @@ export function DatosOferta({
           ))}
         </CampoSelect>
       </div>
+
+      <div className="mt-3 grid gap-3 sm:grid-cols-3">
+        <div className="sm:col-span-2">
+          <CampoSelect
+            etiqueta="Tratamiento de IVA"
+            value={tratamiento}
+            onChange={(e) => {
+              const elegido = TRATAMIENTOS.find((t) => t.clave === e.currentTarget.value);
+              // «Otra tarifa» no cambia el número: sólo destapa el campo para
+              // que el asesor escriba el que corresponda.
+              if (elegido?.tarifa === null) return;
+              despachar({ tipo: 'editarCabecera', cambios: { iva: elegido?.tarifa ?? 0 } });
+            }}
+          >
+            {TRATAMIENTOS.map((t) => (
+              <option key={t.clave} value={t.clave}>
+                {t.texto}
+              </option>
+            ))}
+          </CampoSelect>
+        </div>
+
+        {tratamiento === 'otra' ? (
+          <CampoNumero
+            etiqueta="IVA (%)"
+            valor={Math.round(cotizacion.iva * 10000) / 100}
+            minimo={0}
+            max={100}
+            alCambiar={(porciento) =>
+              despachar({
+                tipo: 'editarCabecera',
+                cambios: { iva: Math.min(100, porciento) / 100 },
+              })
+            }
+          />
+        ) : null}
+      </div>
+
+      <p className="mt-2 text-xs text-neutral-500">
+        La tarifa queda guardada en esta cotización. Si el IVA cambia más adelante, lo ya emitido
+        conserva sus totales.
+      </p>
     </Seccion>
   );
 }
@@ -258,13 +317,17 @@ export function PanelCondiciones({
   );
 }
 
-export function ResumenTotales({ totales }: { totales: TotalesCotizacion }) {
+export function ResumenTotales({ totales, iva }: { totales: TotalesCotizacion; iva: number }) {
   const filas: [string, string][] = [
     ['Subtotal', pesos(totales.bruto)],
     ...(totales.descuento > 0
       ? ([['Descuento', `- ${pesos(totales.descuento)}`]] as [string, string][])
       : []),
-    [`IVA ${Math.round(IVA * 100)}%`, pesos(totales.iva)],
+    // Con tarifa cero la fila del IVA sólo confunde: se sustituye por una
+    // línea que dice por qué no lo lleva.
+    ...(iva > 0
+      ? ([[`IVA ${redondear(iva * 100)}%`, pesos(totales.iva)]] as [string, string][])
+      : []),
   ];
 
   return (
@@ -283,7 +346,13 @@ export function ResumenTotales({ totales }: { totales: TotalesCotizacion }) {
       </div>
       <p className="px-5 py-2 text-xs text-neutral-500">
         {unidades(totales.unidades)} unidades en total
+        {iva > 0 ? null : ' · operación sin IVA'}
       </p>
     </div>
   );
+}
+
+/** 19 en vez de 19.00, pero 8.5 si la tarifa lo lleva. */
+function redondear(valor: number): string {
+  return String(Math.round(valor * 100) / 100);
 }

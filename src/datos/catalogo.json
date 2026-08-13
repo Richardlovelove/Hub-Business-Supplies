@@ -1,5 +1,6 @@
 {
   "generadoEl": "2026-08-13",
+  "version": "fcc0ed9a03c1",
   "origen": "LISTADO_PRECIOS_2026.xlsx",
   "iva": 0.19,
   "categorias": [
@@ -5004,7 +5005,7 @@
     },
     {
       "tipo": "escalon_duplicado",
-      "detalle": "PRECINTO CORREA 03 DOBLE CIERRE 35 CMS @2000 con logo: 320 vs 300, se usa el menor",
+      "detalle": "PRECINTO CORREA 03 DOBLE CIERRE 35 CMS @2000 con logo: 320 y 300; se usa 300, que es el de la fila de más abajo",
       "producto": "precinto-correa-03-doble-cierre-35-cms"
     },
     {

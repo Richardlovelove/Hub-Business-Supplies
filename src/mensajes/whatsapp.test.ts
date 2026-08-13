@@ -7,6 +7,8 @@ const base: Cotizacion = {
   numero: 'COT-2026-0007',
   fecha: '2026-08-13',
   asesor: 'Yeimy Mahecha',
+  iva: 0.19,
+  catalogoVersion: 'prueba',
   cliente: {
     empresa: 'SERVIHORIZONTAL',
     nit: '',

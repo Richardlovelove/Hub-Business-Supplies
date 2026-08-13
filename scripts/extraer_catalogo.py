@@ -17,6 +17,7 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import unicodedata
@@ -491,26 +492,29 @@ def consolidar_escalones(producto: Producto, rec: Recolector) -> list[dict]:
     Deja un solo precio por combinación de cantidad, logo y medida.
 
     Cuando el Excel trae la misma combinación dos veces con precios distintos
-    —pasa en varios bloques— se conserva el más bajo, que es el que el
-    comercial termina ofreciendo, y se deja constancia en las incidencias.
+    —pasa en varios bloques— se conserva **la última fila**, no la más barata.
+
+    Antes ganaba la más barata, y eso se comporta justo al revés de lo que hace
+    falta: si un proveedor sube y en la hoja conviven la fila vieja y la nueva,
+    quedarse con la mínima significa cotizar siempre al precio viejo. Al editar
+    una hoja de cálculo lo nuevo se escribe debajo, así que la última fila es la
+    apuesta razonable. Sigue quedando constancia en las incidencias, porque la
+    ambigüedad la resuelve el Excel, no este script.
     """
     mejores: dict[tuple, Escalon] = {}
     for escalon in producto.escalones:
         clave = escalon.clave()
         previo = mejores.get(clave)
-        if previo is None:
-            mejores[clave] = escalon
-            continue
-        if abs(previo.unitario - escalon.unitario) > 0.01:
+        if previo is not None and abs(previo.unitario - escalon.unitario) > 0.01:
             rec.anotar(
                 "escalon_duplicado",
                 f"{producto.nombre} @{escalon.cantidad}"
                 f"{' con logo' if escalon.logo else ''}: "
-                f"{previo.unitario:.0f} vs {escalon.unitario:.0f}, se usa el menor",
+                f"{previo.unitario:.0f} y {escalon.unitario:.0f}; "
+                f"se usa {escalon.unitario:.0f}, que es el de la fila de más abajo",
                 producto=producto.id,
             )
-        if escalon.unitario < previo.unitario:
-            mejores[clave] = escalon
+        mejores[clave] = escalon
 
     ordenados = sorted(
         mejores.values(), key=lambda e: (e.medida or "", bool(e.logo), e.cantidad)
@@ -542,6 +546,16 @@ def consolidar_escalones(producto: Producto, rec: Recolector) -> list[dict]:
         }
         for e in ordenados
     ]
+
+
+def version_de(productos: list[dict]) -> str:
+    """Huella corta de los precios publicados."""
+    relevante = [
+        {"id": p["id"], "escalones": p["escalones"]}
+        for p in sorted(productos, key=lambda p: p["id"])
+    ]
+    serializado = json.dumps(relevante, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(serializado.encode("utf-8")).hexdigest()[:12]
 
 
 def costo_minimo(producto: Producto) -> float | None:
@@ -605,6 +619,10 @@ def construir(ruta: Path, incluir_costos: bool = True) -> dict:
 
     return {
         "generadoEl": datetime.now().date().isoformat(),
+        # Huella de los precios, no de la fecha: regenerar el catálogo sin que
+        # nada haya cambiado deja la misma versión. La aplicación la usa para
+        # saber si una cotización guardada se armó con otra lista de precios.
+        "version": version_de(productos),
         "origen": ruta.name,
         "iva": IVA,
         "categorias": categorias,

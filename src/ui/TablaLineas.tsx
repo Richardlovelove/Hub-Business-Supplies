@@ -7,14 +7,10 @@
  * fila lo dice y ofrece volver.
  */
 
-import { IVA, productoPorId } from '../dominio/catalogo';
+import { productoPorId } from '../dominio/catalogo';
 import { pesos, porcentaje, unidades } from '../dominio/formato';
-import {
-  margenDeLinea,
-  oportunidadDeVolumen,
-  sugerirPrecio,
-  totalesDeLinea,
-} from '../dominio/precios';
+import { margenDeLinea, oportunidadDeVolumen, totalesDeLinea } from '../dominio/precios';
+import type { Alerta } from '../dominio/revision';
 import type { Linea } from '../dominio/tipos';
 import { CampoNumero, Insignia } from './componentes';
 import type { Despachar } from './useCotizacion';
@@ -22,11 +18,15 @@ import type { Despachar } from './useCotizacion';
 interface Props {
   lineas: readonly Linea[];
   despachar: Despachar;
+  /** Tarifa de IVA de la cotización, para el desglose de cada línea. */
+  iva: number;
+  /** Alertas por línea, calculadas en el dominio. */
+  alertasPorLinea: ReadonlyMap<string, readonly Alerta[]>;
   /** Muestra costo y margen. Es información interna: nunca sale en el PDF. */
   verMargen: boolean;
 }
 
-export function TablaLineas({ lineas, despachar, verMargen }: Props) {
+export function TablaLineas({ lineas, despachar, iva, alertasPorLinea, verMargen }: Props) {
   if (lineas.length === 0) {
     return (
       <p className="rounded-xl border border-dashed border-neutral-300 px-4 py-10 text-center text-sm text-neutral-500">
@@ -45,6 +45,8 @@ export function TablaLineas({ lineas, despachar, verMargen }: Props) {
           esPrimera={indice === 0}
           esUltima={indice === lineas.length - 1}
           despachar={despachar}
+          iva={iva}
+          alertas={alertasPorLinea.get(linea.id) ?? []}
           verMargen={verMargen}
         />
       ))}
@@ -58,6 +60,8 @@ function FilaLinea({
   esPrimera,
   esUltima,
   despachar,
+  iva,
+  alertas,
   verMargen,
 }: {
   linea: Linea;
@@ -65,16 +69,19 @@ function FilaLinea({
   esPrimera: boolean;
   esUltima: boolean;
   despachar: Despachar;
+  iva: number;
+  alertas: readonly Alerta[];
   verMargen: boolean;
 }) {
   const producto = productoPorId(linea.productoId);
-  const totales = totalesDeLinea(linea, IVA);
+  const totales = totalesDeLinea(linea, iva);
   const variante = { conLogo: linea.conLogo, medida: linea.medida };
 
-  const sugerido = producto ? sugerirPrecio(producto, linea.cantidad, variante) : null;
   const oportunidad = producto ? oportunidadDeVolumen(producto, linea.cantidad, variante) : null;
   const margen = margenDeLinea(producto, linea);
-  const desviado = sugerido !== null && Math.abs(sugerido.unitario - linea.unitario) > 0.5;
+  const desviado = alertas.some(
+    (a) => a.tipo === 'precio-manual' || a.tipo === 'precio-desactualizado',
+  );
 
   const editar = (cambios: Partial<Linea>) =>
     despachar({ tipo: 'editarLinea', id: linea.id, cambios });
@@ -168,8 +175,7 @@ function FilaLinea({
 
           <Avisos
             linea={linea}
-            desviado={desviado}
-            sugerido={sugerido}
+            alertas={alertas}
             oportunidad={oportunidad}
             margen={verMargen ? margen : null}
             costo={verMargen ? producto?.costoReferencia : undefined}
@@ -215,8 +221,7 @@ function FilaLinea({
 
 function Avisos({
   linea,
-  desviado,
-  sugerido,
+  alertas,
   oportunidad,
   margen,
   costo,
@@ -225,8 +230,7 @@ function Avisos({
   alSubirVolumen,
 }: {
   linea: Linea;
-  desviado: boolean;
-  sugerido: ReturnType<typeof sugerirPrecio> | null;
+  alertas: readonly Alerta[];
   oportunidad: ReturnType<typeof oportunidadDeVolumen>;
   margen: number | null;
   costo?: number;
@@ -236,25 +240,50 @@ function Avisos({
 }) {
   const avisos: React.ReactNode[] = [];
 
-  if (sugerido?.motivo === 'bajo-minimo') {
-    avisos.push(
-      <span key="minimo" className="text-amber-700">
-        La cantidad está por debajo del mínimo publicado; se aplicó el precio del escalón más
-        bajo. Confirme con producción antes de enviar.
-      </span>,
-    );
-  }
+  for (const alerta of alertas) {
+    switch (alerta.tipo) {
+      case 'referencia-desconocida':
+        avisos.push(
+          <span key="huerfana" className="font-semibold text-red-700">
+            Esta referencia ya no está en el listado de precios. El valor mostrado es el que se
+            guardó al armar la cotización y nadie puede verificarlo: confírmelo antes de enviar.
+          </span>,
+        );
+        break;
 
-  if (desviado && sugerido) {
-    avisos.push(
-      <span key="desviado" className="text-amber-700">
-        Precio editado a mano. El listado sugiere {pesos(sugerido.unitario)} para{' '}
-        {unidades(linea.cantidad)} unidades.{' '}
-        <button type="button" className="font-bold underline" onClick={alRestaurar}>
-          Usar el sugerido
-        </button>
-      </span>,
-    );
+      case 'precio-desactualizado':
+        avisos.push(
+          <span key="desactualizado" className="font-semibold text-red-700">
+            El listado cambió: esta referencia pasó de {pesos(alerta.guardado)} a{' '}
+            {pesos(alerta.vigente)}.{' '}
+            <button type="button" className="underline" onClick={alRestaurar}>
+              Actualizar al precio vigente
+            </button>
+          </span>,
+        );
+        break;
+
+      case 'precio-manual':
+        avisos.push(
+          <span key="manual" className="text-amber-700">
+            Precio editado a mano. El listado sugiere {pesos(alerta.sugerido)} para{' '}
+            {unidades(linea.cantidad)} unidades.{' '}
+            <button type="button" className="font-bold underline" onClick={alRestaurar}>
+              Usar el sugerido
+            </button>
+          </span>,
+        );
+        break;
+
+      case 'bajo-minimo':
+        avisos.push(
+          <span key="minimo" className="text-amber-700">
+            La cantidad está por debajo del mínimo publicado ({unidades(alerta.minimo)} unidades);
+            se aplicó el precio del escalón más bajo. Confirme con producción antes de enviar.
+          </span>,
+        );
+        break;
+    }
   }
 
   if (oportunidad && oportunidad.ahorro > 0 && !linea.precioManual) {

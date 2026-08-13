@@ -7,6 +7,7 @@
  */
 
 import { PLANTILLA_POR_DEFECTO } from '../datos/condiciones';
+import { catalogo } from './catalogo';
 import { ASESORES } from '../datos/empresa';
 import { hoyIso } from './formato';
 import { sugerirPrecio } from './precios';
@@ -54,6 +55,8 @@ export function cotizacionNueva(): Cotizacion {
     numero: numeroPrevisto(fecha),
     fecha,
     asesor: ASESORES[0]!,
+    iva: catalogo.iva,
+    catalogoVersion: catalogo.version,
     cliente: { ...CLIENTE_VACIO },
     lineas: [],
     condiciones: {
@@ -128,10 +131,22 @@ export function guardarBorrador(cotizacion: Cotizacion): void {
   escribir(CLAVE_BORRADOR, cotizacion);
 }
 
+/**
+ * Recupera el borrador y completa lo que falte.
+ *
+ * Los borradores guardados antes de que la cotización llevara su propia
+ * tarifa no tienen `iva` ni `catalogoVersion`. Se rellenan con lo vigente:
+ * no hay mejor dato, y dejarlos en `undefined` produciría totales `NaN`.
+ */
 export function recuperarBorrador(): Cotizacion | null {
   const guardado = leer<Cotizacion>(CLAVE_BORRADOR);
   if (!guardado?.lineas || !Array.isArray(guardado.lineas)) return null;
-  return guardado;
+
+  return {
+    ...guardado,
+    iva: Number.isFinite(guardado.iva) ? guardado.iva : catalogo.iva,
+    catalogoVersion: guardado.catalogoVersion ?? catalogo.version,
+  };
 }
 
 export function descartarBorrador(): void {

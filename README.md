@@ -106,7 +106,7 @@ El Excel es un documento de trabajo, no una base de datos. El script normaliza:
 | `CLISE PARA LOGO` metido como si fuera un escalón de cantidad | Lo saca a producto propio |
 | Erratas (`GAYA`, `DELLO`, `REFE`, 40 espacios seguidos) | Las corrige al leer, sin tocar el original |
 | Totales que no cuadran con `unitario × cantidad` | Manda el unitario, y lo reporta |
-| El mismo escalón dos veces con precios distintos | Se queda con el menor, y lo reporta |
+| El mismo escalón dos veces con precios distintos | Se queda con **la fila de más abajo**, y lo reporta |
 | Precio que sube al subir de escalón | Lo respeta, y lo reporta |
 | `CAJA X 25 UNIDADES` en la columna de cantidad del proveedor | Lo guarda como empaque |
 | Notas sueltas leídas como si fueran productos | Las descarta |
@@ -144,10 +144,26 @@ cotizador saca los mismos totales al peso.
 
 ## Decisiones que conviene conocer
 
+**El IVA viaja dentro de la cotización.** No se lee del catálogo al mostrarla,
+sino que queda guardado en el documento al crearlo. Antes no era así, y eso
+significaba que un cambio de tarifa recalculaba todas las cotizaciones
+guardadas: el PDF que el cliente ya tenía en la mano decía un total y la
+pantalla otro. La misma pieza permite cotizar una exportación sin IVA o vender
+desde otro país, con el selector «Tratamiento de IVA».
+
+**Una cotización guardada se revisa contra el listado vigente.** El caso real:
+se arma el lunes, el martes se regenera el catálogo porque un proveedor subió,
+y el miércoles se reabre el borrador. La línea guarda el precio con el que se
+armó, así que sin revisión la oferta sale al precio viejo. Al abrirla, las
+líneas cuyo precio ya no coincide —o cuya referencia desapareció del listado—
+salen marcadas en rojo, con un aviso arriba y un botón para actualizarlas.
+Nada se corrige solo: la decisión sigue siendo del asesor.
+
 **El precio se sugiere, no se impone.** El listado propone el precio del
 escalón; el asesor puede escribir otro y la línea avisa de la diferencia, con
 un botón para volver al sugerido. La lista de precios orienta una negociación,
-no la reemplaza.
+no la reemplaza. Un precio escrito a mano y un precio que quedó viejo son
+cosas distintas y se anuncian distinto.
 
 **Cantidades intermedias.** Pedir 1.500 unidades cuando los escalones son 1.000
 y 2.000 se cobra al precio de 1.000: manda el escalón más alto que la cantidad
