@@ -39,26 +39,35 @@ export function PanelCatalogo({ alAgregar, productosEnUso }: Props) {
           </span>
         </div>
 
-        <input
-          className="campo"
-          type="search"
-          placeholder="Buscar: guaya 40, etiqueta void, bolsa courier…"
-          value={consulta}
-          onChange={(evento) => setConsulta(evento.currentTarget.value)}
-        />
+        {/* El texto de las etiquetas va oculto: el rótulo «Catálogo» y el
+            marcador de posición bastan a la vista, pero un lector de pantalla
+            necesita saber qué es cada control. */}
+        <label>
+          <span className="sr-only">Buscar referencia en el catálogo</span>
+          <input
+            className="campo"
+            type="search"
+            placeholder="Buscar: guaya 40, etiqueta void, bolsa courier…"
+            value={consulta}
+            onChange={(evento) => setConsulta(evento.currentTarget.value)}
+          />
+        </label>
 
-        <select
-          className="campo"
-          value={categoria}
-          onChange={(evento) => setCategoria(evento.currentTarget.value)}
-        >
-          <option value="">Todas las categorías</option>
-          {catalogo.categorias.map((nombre) => (
-            <option key={nombre} value={nombre}>
-              {nombre}
-            </option>
-          ))}
-        </select>
+        <label>
+          <span className="sr-only">Filtrar por categoría</span>
+          <select
+            className="campo"
+            value={categoria}
+            onChange={(evento) => setCategoria(evento.currentTarget.value)}
+          >
+            <option value="">Todas las categorías</option>
+            {catalogo.categorias.map((nombre) => (
+              <option key={nombre} value={nombre}>
+                {nombre}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto">
@@ -106,6 +115,7 @@ function FilaProducto({
       <button
         type="button"
         onClick={() => alAgregar(producto)}
+        aria-label={`Añadir ${producto.nombre} a la cotización`}
         className="group flex w-full items-start gap-3 border-b border-neutral-100 px-5 py-3 text-left transition hover:bg-marca-50"
       >
         <span className="min-w-0 flex-1">
@@ -128,11 +138,10 @@ function FilaProducto({
         </span>
         <span
           aria-hidden
-          className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-lg leading-none font-bold text-neutral-500 transition group-hover:bg-marca-600 group-hover:text-white"
+          className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-lg leading-none font-bold text-neutral-500 transition group-hover:bg-marca-600 group-hover:text-white"
         >
           +
         </span>
-        <span className="sr-only">Añadir {producto.nombre} a la cotización</span>
       </button>
     </li>
   );

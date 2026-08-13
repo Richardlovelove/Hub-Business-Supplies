@@ -69,7 +69,13 @@ export const NOTAS_FRECUENTES: readonly string[] = [
   'Colores diferentes a los estándar requieren inyección mínima de 5.000 unidades.',
   'Los precios no incluyen flete salvo indicación expresa.',
   'La numeración consecutiva se define con el cliente antes de producción.',
-  'Precios sujetos a cambio sin previo aviso por variación de la tasa de cambio.',
+  // Antes había aquí un "precios sujetos a cambio sin previo aviso" que
+  // contradecía la vigencia declarada en el mismo documento: una oferta con
+  // plazo compromete al oferente durante ese plazo. Estas dos notas dicen lo
+  // mismo sin contradecirlo: el precio es firme mientras la oferta esté
+  // vigente, y lo que depende de la TRM se acota a los productos importados.
+  'Vencida la vigencia de esta oferta, los precios deben confirmarse nuevamente.',
+  'Los productos importados se facturan a la TRM del día de la orden de compra.',
 ];
 
 /** Texto de cierre del PDF. */

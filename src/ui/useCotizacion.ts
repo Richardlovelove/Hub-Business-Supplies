@@ -9,7 +9,7 @@
 import { useEffect, useMemo, useReducer } from 'react';
 
 import { PLANTILLAS, type ClavePlantilla } from '../datos/condiciones';
-import { IVA, productoPorId } from '../dominio/catalogo';
+import { catalogo, productoPorId } from '../dominio/catalogo';
 import {
   actualizarLinea,
   cotizacionNueva,
@@ -21,6 +21,7 @@ import {
   siguienteNumero,
 } from '../dominio/cotizacion';
 import { totalesDeCotizacion } from '../dominio/precios';
+import { revisarCotizacion } from '../dominio/revision';
 import type { Cliente, Condiciones, Cotizacion, Linea, Producto } from '../dominio/tipos';
 
 type Accion =
@@ -31,9 +32,13 @@ type Accion =
   | { tipo: 'editarCliente'; cambios: Partial<Cliente> }
   | { tipo: 'editarCondiciones'; cambios: Partial<Condiciones> }
   | { tipo: 'aplicarPlantilla'; clave: ClavePlantilla }
-  | { tipo: 'editarCabecera'; cambios: Partial<Pick<Cotizacion, 'asesor' | 'fecha' | 'numero'>> }
+  | {
+      tipo: 'editarCabecera';
+      cambios: Partial<Pick<Cotizacion, 'asesor' | 'fecha' | 'numero' | 'iva'>>;
+    }
   | { tipo: 'reiniciar' }
-  | { tipo: 'confirmarNumero' };
+  | { tipo: 'confirmarNumero' }
+  | { tipo: 'actualizarPrecios' };
 
 function reducir(estado: Cotizacion, accion: Accion): Cotizacion {
   switch (accion.tipo) {
@@ -99,6 +104,18 @@ function reducir(estado: Cotizacion, accion: Accion): Cotizacion {
       return { ...estado, numero: siguienteNumero(estado.fecha) };
     }
 
+    case 'actualizarPrecios': {
+      // Vuelve a pedirle el precio al listado vigente en todas las líneas que
+      // no lleven precio escrito a mano, y deja constancia de con qué versión
+      // del catálogo quedó calculada la cotización.
+      const lineas = estado.lineas.map((linea) => {
+        const producto = productoPorId(linea.productoId);
+        if (!producto || linea.precioManual) return linea;
+        return actualizarLinea(linea, { precioManual: false }, producto);
+      });
+      return { ...estado, lineas, catalogoVersion: catalogo.version };
+    }
+
     case 'reiniciar':
       descartarBorrador();
       return cotizacionNueva();
@@ -120,8 +137,8 @@ export function useCotizacion() {
   }, [cotizacion]);
 
   const totales = useMemo(
-    () => totalesDeCotizacion(cotizacion.lineas, IVA),
-    [cotizacion.lineas],
+    () => totalesDeCotizacion(cotizacion.lineas, cotizacion.iva),
+    [cotizacion.lineas, cotizacion.iva],
   );
 
   /** Ids de productos ya presentes, para marcarlos en el catálogo. */
@@ -130,7 +147,18 @@ export function useCotizacion() {
     [cotizacion.lineas],
   );
 
-  return { cotizacion, despachar, totales, productosEnUso };
+  const revision = useMemo(
+    () => revisarCotizacion(cotizacion.lineas, productoPorId),
+    [cotizacion.lineas],
+  );
+
+  /** Alertas indexadas por línea, para que cada tarjeta pinte las suyas. */
+  const alertasPorLinea = useMemo(
+    () => new Map(revision.porLinea.map((r) => [r.lineaId, r.alertas])),
+    [revision],
+  );
+
+  return { cotizacion, despachar, totales, productosEnUso, revision, alertasPorLinea };
 }
 
 export type Despachar = ReturnType<typeof useCotizacion>['despachar'];

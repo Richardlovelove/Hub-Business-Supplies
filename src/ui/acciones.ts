@@ -7,14 +7,13 @@
  * los descarga en segundo plano para que el primer PDF salga sin espera.
  */
 
-import { IVA } from '../dominio/catalogo';
 import type { Cotizacion } from '../dominio/tipos';
 import { enlaceWhatsapp, mensajeWhatsapp } from '../mensajes/whatsapp';
 
 async function generar(cotizacion: Cotizacion, borrador: boolean) {
   const { construirPdf, nombreArchivo } = await import('../pdf/cotizacionPdf');
   return {
-    doc: construirPdf(cotizacion, { iva: IVA, borrador }),
+    doc: construirPdf(cotizacion, { borrador }),
     nombre: nombreArchivo(cotizacion),
   };
 }
@@ -38,7 +37,7 @@ export async function verPdf(cotizacion: Cotizacion, borrador = false): Promise<
 }
 
 export function abrirWhatsapp(cotizacion: Cotizacion): void {
-  window.open(enlaceWhatsapp(cotizacion, IVA), '_blank', 'noopener');
+  window.open(enlaceWhatsapp(cotizacion, cotizacion.iva), '_blank', 'noopener');
 }
 
 /**
@@ -48,7 +47,7 @@ export function abrirWhatsapp(cotizacion: Cotizacion): void {
  * desde un `file://` no está, y ahí hace falta el camino viejo.
  */
 export async function copiarMensaje(cotizacion: Cotizacion): Promise<boolean> {
-  const texto = mensajeWhatsapp(cotizacion, IVA);
+  const texto = mensajeWhatsapp(cotizacion, cotizacion.iva);
 
   try {
     if (navigator.clipboard?.writeText) {

@@ -56,8 +56,10 @@ export interface EquipoSatelital {
 
 export interface Catalogo {
   readonly generadoEl: string;
+  /** Huella de los precios. Cambia sólo si cambió algún precio. */
+  readonly version: string;
   readonly origen: string;
-  /** Tarifa de IVA vigente, como fracción (0.19). */
+  /** Tarifa de IVA que se propone al abrir una cotización nueva. */
   readonly iva: number;
   readonly categorias: readonly string[];
   readonly productos: readonly Producto[];
@@ -118,6 +120,23 @@ export interface Cotizacion {
   numero: string;
   fecha: string;
   asesor: string;
+  /**
+   * Tarifa de IVA de **esta** cotización, como fracción.
+   *
+   * Va aquí y no en el catálogo a propósito. Cuando se leía del catálogo, un
+   * cambio de tarifa recalculaba todas las cotizaciones guardadas: el PDF que
+   * el cliente ya tenía en la mano decía un total y la pantalla otro. Con la
+   * tarifa dentro del documento, lo emitido se queda como se emitió.
+   *
+   * También es lo que permite cotizar una exportación (0 %) o vender desde
+   * otro país sin tocar el catálogo.
+   */
+  iva: number;
+  /**
+   * Versión del catálogo con la que se calcularon los precios. Sirve para
+   * avisar, al reabrir un borrador, de que la lista de precios cambió.
+   */
+  catalogoVersion: string;
   cliente: Cliente;
   lineas: Linea[];
   condiciones: Condiciones;

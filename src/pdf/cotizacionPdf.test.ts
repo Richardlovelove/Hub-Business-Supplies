@@ -26,11 +26,13 @@ function linea(parcial: Partial<Linea>): Linea {
   };
 }
 
-function cotizacion(lineas: Linea[], observaciones = ''): Cotizacion {
+function cotizacion(lineas: Linea[], observaciones = '', iva = 0.19): Cotizacion {
   return {
     numero: 'COT-2026-0042',
     fecha: '2026-08-13',
     asesor: 'Yeimy Mahecha',
+    iva,
+    catalogoVersion: 'prueba',
     cliente: {
       empresa: 'TRANSPORTES Y LOGÍSTICA DEL CARIBE S.A.S.',
       nit: '901.234.567-8',
@@ -75,7 +77,6 @@ describe('construirPdf', () => {
           conLogo: false,
         }),
       ]),
-      { iva: 0.19 },
     );
     expect(doc.getNumberOfPages()).toBe(1);
     guardar('cotizacion-corta.pdf', doc);
@@ -90,9 +91,9 @@ describe('construirPdf', () => {
         medida: i % 3 === 0 ? '20 X 5 CMS' : undefined,
       }),
     );
-    const doc = construirPdf(cotizacion(lineas, 'Precios sujetos a confirmación de existencias.'), {
-      iva: 0.19,
-    });
+    const doc = construirPdf(
+      cotizacion(lineas, 'Precios sujetos a confirmación de existencias.'),
+    );
     expect(doc.getNumberOfPages()).toBeGreaterThan(1);
     guardar('cotizacion-larga.pdf', doc);
   });
@@ -103,14 +104,26 @@ describe('construirPdf', () => {
         linea({ descripcion: 'PRECINTO GUAYA REF. 02 - 40 CMS', cantidad: 5000, descuento: 10 }),
         linea({ descripcion: 'TULA DE SEGURIDAD 30 X 40 CMS AZUL', cantidad: 20, unitario: 38000 }),
       ]),
-      { iva: 0.19, borrador: true },
+      { borrador: true },
     );
     expect(doc.getNumberOfPages()).toBe(1);
     guardar('cotizacion-descuento-borrador.pdf', doc);
   });
 
   it('no falla con una cotización vacía', () => {
-    expect(() => construirPdf(cotizacion([]), { iva: 0.19 })).not.toThrow();
+    expect(() => construirPdf(cotizacion([]))).not.toThrow();
+  });
+
+  it('usa la tarifa de la cotización y no una global', () => {
+    // Una exportación a 0 %: el mismo documento con otra tarifa cambia los
+    // totales, sin tocar el catálogo ni ninguna constante.
+    const lineas = [linea({ cantidad: 1000, unitario: 400 })];
+    const gravada = construirPdf(cotizacion(lineas, '', 0.19));
+    const exportacion = construirPdf(cotizacion(lineas, '', 0));
+
+    expect(gravada.getNumberOfPages()).toBe(1);
+    expect(exportacion.getNumberOfPages()).toBe(1);
+    guardar('cotizacion-exportacion.pdf', exportacion);
   });
 });
 

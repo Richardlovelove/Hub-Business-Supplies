@@ -51,8 +51,16 @@
  * botón parten de esta misma base.
  */
 @utility boton {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2
-    text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40;
+  /* `min-h-11` son 44 px, el objetivo táctil mínimo cómodo. En escritorio se
+     compacta a 36 px, que basta cuando se apunta con el ratón. */
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full
+    px-4 py-2 text-sm font-bold transition
+    disabled:cursor-not-allowed disabled:opacity-40 lg:min-h-9;
+}
+
+/* Casilla de verificación: cómoda con el dedo, discreta con el ratón. */
+@utility casilla {
+  @apply size-5 rounded border-neutral-300 text-marca-600 focus:ring-marca-500 lg:size-4;
 }
 
 @layer components {
