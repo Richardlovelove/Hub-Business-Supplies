@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+/*
+ * Misma rampa de marca que byslogistics-web (`src/assets/styles/global.css`),
+ * para que el cotizador y el sitio público se vean de la misma empresa. Si el
+ * azul cambia allá, cambia aquí.
+ */
+@theme {
+  --color-marca-50: #eff7fc;
+  --color-marca-100: #d7ecf8;
+  --color-marca-200: #aed8f0;
+  --color-marca-300: #79bce4;
+  --color-marca-400: #3c99d4;
+  --color-marca-500: #157cbf;
+  --color-marca-600: #0060a8;
+  --color-marca-700: #00518e;
+  --color-marca-800: #004174;
+  --color-marca-900: #00335c;
+  --color-marca-950: #00203a;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-neutral-100 text-neutral-800 antialiased;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Los campos numéricos se editan con el teclado; las flechitas del navegador
+     sólo estorban en una tabla densa. */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    @apply m-0 appearance-none;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  ::selection {
+    @apply bg-marca-400 text-white;
+  }
+}
+
+/*
+ * `@utility` en vez de una clase suelta: sólo las utilidades registradas se
+ * pueden reutilizar con `@apply` desde otra regla, y las tres variantes de
+ * botón parten de esta misma base.
+ */
+@utility boton {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2
+    text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-40;
+}
+
+@layer components {
+  /* Base de todos los campos de texto del formulario. */
+  .campo {
+    @apply w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm
+      text-neutral-800 outline-none transition
+      placeholder:text-neutral-400
+      focus:border-marca-500 focus:ring-2 focus:ring-marca-500/20;
+  }
+
+  .etiqueta {
+    @apply mb-1 block text-xs font-bold tracking-wide text-neutral-500 uppercase;
+  }
+
+  .boton-primario {
+    @apply boton bg-marca-600 text-white shadow-lg shadow-marca-600/25
+      hover:bg-marca-700;
+  }
+
+  .boton-secundario {
+    @apply boton border border-neutral-300 bg-white text-neutral-700
+      hover:border-marca-400 hover:text-marca-700;
+  }
+
+  .boton-whatsapp {
+    @apply boton bg-[#25d366] text-white shadow-lg shadow-[#25d366]/25
+      hover:bg-[#1eb457];
+  }
+
+  .tarjeta {
+    @apply rounded-2xl border border-neutral-200 bg-white;
+  }
+}
