@@ -170,6 +170,18 @@ central.
 
 **El borrador se guarda solo.** Cerrar la pestaña no cuesta el trabajo hecho.
 
+**En móvil, catálogo y cotización se alternan.** Apilados obligaban a bajar
+una pantalla entera de catálogo antes de ver el formulario; con el conmutador
+el formulario arranca a 159 px en vez de a 940. Las acciones de envío y el
+total bajan a una barra fija, y añadir un producto muestra un aviso, porque
+en móvil la línea nueva cae en el panel que no se está viendo.
+
+**Accesibilidad verificada, no supuesta.** Cero violaciones de axe-core en
+escritorio y en móvil, con la cotización vacía y con líneas. Los campos que se
+repiten en cada línea llevan el nombre del producto —«Cantidad de PRECINTO
+GUAYA REF. 01», no cinco «Cantidad» seguidas— y los botones miden 44 px con el
+dedo y se compactan con el ratón.
+
 ---
 
 ## Datos de la empresa
@@ -185,6 +197,20 @@ Dos cosas pendientes de confirmar con la empresa:
 - **Tarifa del clisé.** El listado tiene dos: `$55.000` fijo por diseño
   (fila 40) y `$2.300` por unidad (hoja `COTIZADOR`). Se cargó la de `$55.000`
   como servicio independiente.
+
+### Sobre la vigencia de la oferta
+
+Una cotización no es documento fiscal: no le aplica la facturación electrónica
+de la DIAN, así que no necesita CUFE ni resolución de numeración. El
+consecutivo local es válido para lo que es.
+
+Lo que sí importa: el documento declara una vigencia («válida hasta…»), y una
+oferta con plazo compromete al oferente durante ese plazo. Por eso se quitó de
+las notas frecuentes un «precios sujetos a cambio sin previo aviso» que
+contradecía esa misma vigencia. En su lugar hay dos notas compatibles: los
+precios se reconfirman *vencida* la oferta, y lo que depende de la TRM se acota
+a los productos importados, que es donde el propio Excel anota «TRM máxima».
+La redacción definitiva conviene que la valide el área jurídica.
 
 ---
 

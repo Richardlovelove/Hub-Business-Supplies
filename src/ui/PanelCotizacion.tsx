@@ -175,7 +175,7 @@ export function PanelCondiciones({
           <label className="flex cursor-pointer items-center gap-2 text-sm text-neutral-700">
             <input
               type="checkbox"
-              className="size-4 rounded border-neutral-300 text-marca-600 focus:ring-marca-500"
+              className="casilla"
               checked={condiciones.incluyeFlete}
               onChange={(e) => editar({ incluyeFlete: e.currentTarget.checked })}
             />
@@ -191,8 +191,11 @@ export function PanelCondiciones({
         <ul className="space-y-2">
           {condiciones.incluye.map((punto, indice) => (
             <li key={indice} className="flex gap-2">
+              {/* Son campos sin rótulo visible: el de la lista lo da el
+                  `legend`. Se nombran por posición para poder distinguirlos. */}
               <input
                 className="campo"
+                aria-label={`Punto ${indice + 1} de lo que incluye la oferta`}
                 value={punto}
                 onChange={(e) => {
                   const incluye = [...condiciones.incluye];
@@ -202,8 +205,8 @@ export function PanelCondiciones({
               />
               <button
                 type="button"
-                aria-label="Quitar punto"
-                className="shrink-0 rounded-lg border border-neutral-200 px-3 text-neutral-400 transition hover:border-red-300 hover:text-red-600"
+                aria-label={`Quitar el punto ${indice + 1}`}
+                className="min-h-11 shrink-0 rounded-lg border border-neutral-200 px-4 text-neutral-500 transition hover:border-red-300 hover:text-red-600 lg:min-h-0"
                 onClick={() =>
                   editar({ incluye: condiciones.incluye.filter((_, i) => i !== indice) })
                 }
@@ -215,7 +218,7 @@ export function PanelCondiciones({
         </ul>
         <button
           type="button"
-          className="mt-2 text-xs font-bold text-marca-700 underline"
+          className="mt-2 py-2 text-xs font-bold text-marca-700 underline"
           onClick={() => editar({ incluye: [...condiciones.incluye, ''] })}
         >
           Añadir punto
@@ -238,7 +241,7 @@ export function PanelCondiciones({
             key={nota}
             type="button"
             title={nota}
-            className="max-w-full truncate rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600 transition hover:bg-marca-50 hover:text-marca-700"
+            className="max-w-full truncate rounded-full bg-neutral-100 px-3 py-2 text-xs text-neutral-600 transition hover:bg-marca-50 hover:text-marca-700"
             onClick={() =>
               editar({
                 observaciones: condiciones.observaciones

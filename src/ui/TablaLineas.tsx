@@ -81,22 +81,32 @@ function FilaLinea({
 
   return (
     <li className="rounded-xl border border-neutral-200 bg-white p-4">
-      <div className="flex items-start gap-3">
+      {/* En móvil el importe y los botones bajan a su propia fila: dejarlos en
+          una columna a la derecha estrujaba los campos hasta los 45 px, que no
+          dan ni para escribir «10000». `flex-wrap` con `w-full lg:w-auto` los
+          manda abajo en pantalla estrecha y los devuelve al lado en ancha. */}
+      <div className="flex flex-wrap items-start gap-3">
         <span className="mt-2 w-5 shrink-0 text-center text-xs font-bold text-neutral-400">
           {indice + 1}
         </span>
 
-        <div className="min-w-0 flex-1 space-y-3">
+        <div className="min-w-0 flex-1 basis-64 space-y-3">
           <input
             className="campo font-semibold"
             value={linea.descripcion}
-            aria-label="Descripción de la línea"
+            aria-label={`Descripción de la línea ${indice + 1}`}
             onChange={(evento) => editar({ descripcion: evento.currentTarget.value })}
           />
 
+          {/* Todas las líneas repiten los mismos rótulos —«Cantidad», «Valor
+              unitario»—, así que a la vista se distinguen por su posición en
+              la tarjeta. Un lector de pantalla no tiene esa pista: sin el
+              nombre del producto en cada campo, se oyen cinco «Cantidad»
+              seguidas sin saber cuál es cuál. */}
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <CampoNumero
               etiqueta="Cantidad"
+              aria-label={`Cantidad de ${linea.descripcion}`}
               valor={linea.cantidad}
               minimo={1}
               alCambiar={(cantidad) => editar({ cantidad })}
@@ -105,6 +115,7 @@ function FilaLinea({
             <label className="block">
               <span className="etiqueta">Valor unitario</span>
               <CampoNumero
+                aria-label={`Valor unitario de ${linea.descripcion}`}
                 valor={linea.unitario}
                 alCambiar={(unitario) => editar({ unitario, precioManual: true })}
                 className={desviado ? 'border-amber-400 bg-amber-50' : ''}
@@ -113,6 +124,7 @@ function FilaLinea({
 
             <CampoNumero
               etiqueta="Descuento %"
+              aria-label={`Descuento porcentual de ${linea.descripcion}`}
               valor={linea.descuento}
               minimo={0}
               max={100}
@@ -124,6 +136,7 @@ function FilaLinea({
                 <span className="etiqueta">Medida</span>
                 <select
                   className="campo"
+                  aria-label={`Medida de ${linea.descripcion}`}
                   value={linea.medida ?? ''}
                   onChange={(evento) => editar({ medida: evento.currentTarget.value })}
                 >
@@ -138,12 +151,13 @@ function FilaLinea({
             ) : null}
           </div>
 
-          <label className="flex w-fit cursor-pointer items-center gap-2 text-sm text-neutral-700">
+          <label className="flex w-fit cursor-pointer items-center gap-2 py-1.5 text-sm text-neutral-700">
             <input
               type="checkbox"
-              className="size-4 rounded border-neutral-300 text-marca-600 focus:ring-marca-500"
+              className="casilla shrink-0"
               checked={linea.conLogo}
               disabled={producto ? !producto.admiteLogo : false}
+              aria-label={`Marcar ${linea.descripcion} con el logo del cliente`}
               onChange={(evento) => editar({ conLogo: evento.currentTarget.checked })}
             />
             Marcado con logo del cliente
@@ -165,26 +179,28 @@ function FilaLinea({
           />
         </div>
 
-        <div className="flex shrink-0 flex-col items-end gap-1">
-          <span className="text-sm font-bold text-neutral-800">{pesos(totales.subtotal)}</span>
-          <span className="text-xs text-neutral-500">+ IVA {pesos(totales.iva)}</span>
-          <div className="mt-1 flex gap-0.5">
+        <div className="flex w-full items-center justify-between gap-3 border-t border-neutral-100 pt-3 lg:w-auto lg:shrink-0 lg:flex-col lg:items-end lg:gap-1 lg:border-0 lg:pt-0">
+          <div className="flex items-baseline gap-2 lg:flex-col lg:items-end lg:gap-1">
+            <span className="text-sm font-bold text-neutral-800">{pesos(totales.subtotal)}</span>
+            <span className="text-xs text-neutral-500">+ IVA {pesos(totales.iva)}</span>
+          </div>
+          <div className="flex gap-0.5 lg:mt-1">
             <BotonIcono
-              titulo="Subir"
+              titulo={`Subir ${linea.descripcion}`}
               disabled={esPrimera}
               onClick={() => despachar({ tipo: 'moverLinea', id: linea.id, direccion: -1 })}
             >
               ↑
             </BotonIcono>
             <BotonIcono
-              titulo="Bajar"
+              titulo={`Bajar ${linea.descripcion}`}
               disabled={esUltima}
               onClick={() => despachar({ tipo: 'moverLinea', id: linea.id, direccion: 1 })}
             >
               ↓
             </BotonIcono>
             <BotonIcono
-              titulo="Quitar"
+              titulo={`Quitar ${linea.descripcion}`}
               peligro
               onClick={() => despachar({ tipo: 'quitar', id: linea.id })}
             >
@@ -300,7 +316,9 @@ function BotonIcono({
       type="button"
       title={titulo}
       aria-label={titulo}
-      className={`flex size-7 items-center justify-center rounded-lg border border-neutral-200 text-sm transition disabled:opacity-30 ${
+      // 44 px en móvil, que es el mínimo cómodo para el dedo; en escritorio
+      // se compacta, porque ahí se apunta con el ratón.
+      className={`flex size-11 items-center justify-center rounded-lg border border-neutral-200 text-sm transition disabled:opacity-30 lg:size-8 ${
         peligro
           ? 'text-neutral-400 hover:border-red-300 hover:bg-red-50 hover:text-red-600'
           : 'text-neutral-500 hover:border-marca-300 hover:bg-marca-50 hover:text-marca-700'

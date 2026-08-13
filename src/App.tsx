@@ -1,5 +1,10 @@
 /**
- * Pantalla del cotizador: catálogo a la izquierda, cotización a la derecha.
+ * Pantalla del cotizador.
+ *
+ * En escritorio son dos columnas a la vez: catálogo a la izquierda,
+ * cotización a la derecha. En móvil no caben, y apilarlas obligaba a bajar
+ * una pantalla entera de catálogo antes de ver el formulario, así que ahí se
+ * alternan con un conmutador y las acciones bajan a una barra fija.
  *
  * Todo ocurre en el navegador y sin servidor. El borrador se guarda solo, así
  * que cerrar la pestaña por accidente no cuesta el trabajo hecho.
@@ -8,7 +13,9 @@
 import { useState } from 'react';
 
 import { catalogo } from './dominio/catalogo';
+import { pesos } from './dominio/formato';
 import { EMPRESA } from './datos/empresa';
+import type { Producto } from './dominio/tipos';
 import { abrirWhatsapp, copiarMensaje, descargarPdf, verPdf } from './ui/acciones';
 import { PanelCatalogo } from './ui/PanelCatalogo';
 import {
@@ -21,16 +28,29 @@ import { TablaLineas } from './ui/TablaLineas';
 import { Seccion } from './ui/componentes';
 import { useCotizacion } from './ui/useCotizacion';
 
+/** Qué panel se ve en móvil. En escritorio se ven los dos y esto se ignora. */
+type Panel = 'catalogo' | 'cotizacion';
+
 export default function App() {
   const { cotizacion, despachar, totales, productosEnUso } = useCotizacion();
   const [verMargen, setVerMargen] = useState(false);
   const [aviso, setAviso] = useState('');
+  const [panel, setPanel] = useState<Panel>('catalogo');
 
   const vacia = cotizacion.lineas.length === 0;
 
   const anunciar = (mensaje: string) => {
     setAviso(mensaje);
     setTimeout(() => setAviso(''), 3000);
+  };
+
+  /**
+   * En móvil el producto añadido cae en el otro panel, fuera de la vista: sin
+   * este aviso el botón parece no hacer nada.
+   */
+  const agregar = (producto: Producto) => {
+    despachar({ tipo: 'agregar', producto });
+    anunciar(`${producto.nombre} añadido a la cotización.`);
   };
 
   /**
@@ -50,49 +70,108 @@ export default function App() {
     }
   };
 
+  const acciones = {
+    descargar: () => emitir((c) => descargarPdf(c)),
+    ver: () => emitir((c) => verPdf(c, true), false),
+    whatsapp: () => emitir(abrirWhatsapp),
+    copiar: () =>
+      emitir(async (c) =>
+        anunciar(
+          (await copiarMensaje(c))
+            ? 'Mensaje copiado al portapapeles.'
+            : 'No se pudo copiar; seleccione el texto a mano.',
+        ),
+      ),
+    reiniciar: () => {
+      if (vacia || confirm('¿Descartar la cotización actual y empezar una nueva?')) {
+        despachar({ tipo: 'reiniciar' });
+        setPanel('catalogo');
+      }
+    },
+  };
+
   return (
-    <div className="flex min-h-screen flex-col">
-      <Encabezado
-        numero={cotizacion.numero}
-        vacia={vacia}
-        alDescargar={() => emitir((c) => descargarPdf(c))}
-        alVer={() => emitir((c) => verPdf(c, true), false)}
-        alWhatsapp={() => emitir(abrirWhatsapp)}
-        alCopiar={() =>
-          emitir(async (c) =>
-            anunciar(
-              (await copiarMensaje(c))
-                ? 'Mensaje copiado al portapapeles.'
-                : 'No se pudo copiar; seleccione el texto a mano.',
-            ),
-          )
-        }
-        alReiniciar={() => {
-          if (vacia || confirm('¿Descartar la cotización actual y empezar una nueva?')) {
-            despachar({ tipo: 'reiniciar' });
-          }
-        }}
-      />
+    // El relleno inferior deja sitio a la barra fija de móvil.
+    <div className="flex min-h-screen flex-col pb-28 lg:pb-0">
+      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-[110rem] items-center gap-x-4 gap-y-3 px-4 py-3 lg:px-6">
+          <img src="./marca/logo.png" alt={EMPRESA.nombreComercial} className="h-9 w-auto" />
+          <div className="mr-auto min-w-0">
+            <h1 className="truncate text-sm font-bold text-neutral-800">
+              Cotizador · {EMPRESA.nombreComercial}
+            </h1>
+            <p className="text-xs text-neutral-500">{cotizacion.numero}</p>
+          </div>
+
+          {/* En móvil estas acciones viven en la barra inferior. */}
+          <div className="hidden flex-wrap items-center gap-2 lg:flex">
+            <button type="button" className="boton-secundario" onClick={acciones.reiniciar}>
+              Nueva
+            </button>
+            <button
+              type="button"
+              className="boton-secundario"
+              onClick={acciones.copiar}
+              disabled={vacia}
+            >
+              Copiar mensaje
+            </button>
+            <button
+              type="button"
+              className="boton-whatsapp"
+              onClick={acciones.whatsapp}
+              disabled={vacia}
+            >
+              WhatsApp
+            </button>
+            <button
+              type="button"
+              className="boton-secundario"
+              onClick={acciones.ver}
+              disabled={vacia}
+            >
+              Vista previa
+            </button>
+            <button
+              type="button"
+              className="boton-primario"
+              onClick={acciones.descargar}
+              disabled={vacia}
+            >
+              Descargar PDF
+            </button>
+          </div>
+        </div>
+
+        <Conmutador panel={panel} alCambiar={setPanel} lineas={cotizacion.lineas.length} />
+      </header>
 
       <main className="mx-auto flex w-full max-w-[110rem] flex-1 flex-col gap-6 p-4 lg:flex-row lg:p-6">
-        <aside className="tarjeta h-[calc(100vh-8rem)] overflow-hidden lg:sticky lg:top-6 lg:w-[26rem] lg:shrink-0">
-          <PanelCatalogo
-            productosEnUso={productosEnUso}
-            alAgregar={(producto) => despachar({ tipo: 'agregar', producto })}
-          />
+        {/* `lg:flex` y `lg:block` ganan siempre, así que en escritorio los dos
+            paneles se ven pase lo que pase con el conmutador. */}
+        <aside
+          className={`tarjeta h-[calc(100vh-16rem)] overflow-hidden lg:sticky lg:top-24 lg:flex lg:h-[calc(100vh-8rem)] lg:w-[26rem] lg:shrink-0 ${
+            panel === 'catalogo' ? 'flex' : 'hidden'
+          }`}
+        >
+          <PanelCatalogo productosEnUso={productosEnUso} alAgregar={agregar} />
         </aside>
 
-        <div className="min-w-0 flex-1 space-y-6">
+        <div
+          className={`min-w-0 flex-1 space-y-6 lg:block ${
+            panel === 'cotizacion' ? 'block' : 'hidden'
+          }`}
+        >
           <DatosCliente cotizacion={cotizacion} despachar={despachar} />
           <DatosOferta cotizacion={cotizacion} despachar={despachar} />
 
           <Seccion
             titulo={`Referencias cotizadas (${cotizacion.lineas.length})`}
             accion={
-              <label className="flex cursor-pointer items-center gap-2 text-xs text-neutral-500">
+              <label className="flex cursor-pointer items-center gap-2 py-1 text-xs text-neutral-500">
                 <input
                   type="checkbox"
-                  className="size-3.5 rounded border-neutral-300 text-marca-600 focus:ring-marca-500"
+                  className="casilla"
                   checked={verMargen}
                   onChange={(e) => setVerMargen(e.currentTarget.checked)}
                 />
@@ -105,13 +184,47 @@ export default function App() {
 
           <ResumenTotales totales={totales} />
           <PanelCondiciones cotizacion={cotizacion} despachar={despachar} />
+
+          {/* Las acciones secundarias, que en móvil no caben en la barra. */}
+          <div className="flex flex-wrap gap-2 lg:hidden">
+            <button type="button" className="boton-secundario" onClick={acciones.reiniciar}>
+              Nueva
+            </button>
+            <button
+              type="button"
+              className="boton-secundario"
+              onClick={acciones.copiar}
+              disabled={vacia}
+            >
+              Copiar mensaje
+            </button>
+            <button
+              type="button"
+              className="boton-secundario"
+              onClick={acciones.ver}
+              disabled={vacia}
+            >
+              Vista previa
+            </button>
+          </div>
+
           <PieCatalogo />
         </div>
       </main>
 
-      <div aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-6 flex justify-center">
+      <BarraMovil
+        total={totales.total}
+        vacia={vacia}
+        alWhatsapp={acciones.whatsapp}
+        alDescargar={acciones.descargar}
+      />
+
+      <div
+        aria-live="polite"
+        className="pointer-events-none fixed inset-x-0 bottom-28 z-40 flex justify-center px-4 lg:bottom-6"
+      >
         {aviso ? (
-          <p className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-semibold text-white shadow-lg">
+          <p className="rounded-full bg-neutral-900 px-5 py-2 text-center text-sm font-semibold text-white shadow-lg">
             {aviso}
           </p>
         ) : null}
@@ -120,49 +233,94 @@ export default function App() {
   );
 }
 
-function Encabezado({
-  numero,
-  vacia,
-  alDescargar,
-  alVer,
-  alWhatsapp,
-  alCopiar,
-  alReiniciar,
+/**
+ * Conmutador entre catálogo y cotización, sólo en móvil.
+ *
+ * Son dos botones con `aria-pressed` y no un `tablist`: en escritorio los dos
+ * paneles se ven a la vez y el conmutador desaparece, así que anunciarlos como
+ * pestañas sería mentir sobre la mitad de los casos. El panel que no toca se
+ * oculta con `hidden`, que también lo saca del árbol de accesibilidad.
+ */
+function Conmutador({
+  panel,
+  alCambiar,
+  lineas,
 }: {
-  numero: string;
+  panel: Panel;
+  alCambiar: (panel: Panel) => void;
+  lineas: number;
+}) {
+  const opciones: { clave: Panel; texto: string; contador?: number }[] = [
+    { clave: 'catalogo', texto: 'Catálogo' },
+    { clave: 'cotizacion', texto: 'Cotización', contador: lineas },
+  ];
+
+  return (
+    <div className="flex gap-2 border-t border-neutral-200 px-4 py-2 lg:hidden">
+      {opciones.map(({ clave, texto, contador }) => {
+        const activo = panel === clave;
+        return (
+          <button
+            key={clave}
+            type="button"
+            aria-pressed={activo}
+            onClick={() => alCambiar(clave)}
+            className={`boton flex-1 ${
+              activo
+                ? 'bg-marca-600 text-white'
+                : 'border border-neutral-300 bg-white text-neutral-600'
+            }`}
+          >
+            {texto}
+            {contador ? (
+              <span
+                className={`rounded-full px-2 py-0.5 text-xs ${
+                  activo ? 'bg-white/25' : 'bg-neutral-100'
+                }`}
+              >
+                {contador}
+              </span>
+            ) : null}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Total siempre a la vista y las dos acciones de envío, sólo en móvil. */
+function BarraMovil({
+  total,
+  vacia,
+  alWhatsapp,
+  alDescargar,
+}: {
+  total: number;
   vacia: boolean;
-  alDescargar: () => void;
-  alVer: () => void;
   alWhatsapp: () => void;
-  alCopiar: () => void;
-  alReiniciar: () => void;
+  alDescargar: () => void;
 }) {
   return (
-    <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-[110rem] flex-wrap items-center gap-x-4 gap-y-3 px-4 py-3 lg:px-6">
-        <img src="./marca/logo.png" alt={EMPRESA.nombreComercial} className="h-9 w-auto" />
-        <div className="mr-auto">
-          <p className="text-sm font-bold text-neutral-800">Cotizador</p>
-          <p className="text-xs text-neutral-500">{numero}</p>
+    // Es una `section` con nombre —y no un `div`— para que sea un landmark:
+    // si no, su contenido queda fuera de `header` y de `main`, y un lector de
+    // pantalla que navegue por regiones se lo salta.
+    <section
+      aria-label="Total y envío de la cotización"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-neutral-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden"
+    >
+      <div className="flex items-center gap-3">
+        <div className="mr-auto min-w-0">
+          <p className="text-[11px] font-bold tracking-wide text-neutral-500 uppercase">Total</p>
+          <p className="truncate text-lg font-bold text-neutral-900">{pesos(total)}</p>
         </div>
-
-        <button type="button" className="boton-secundario" onClick={alReiniciar}>
-          Nueva
-        </button>
-        <button type="button" className="boton-secundario" onClick={alCopiar} disabled={vacia}>
-          Copiar mensaje
-        </button>
         <button type="button" className="boton-whatsapp" onClick={alWhatsapp} disabled={vacia}>
           WhatsApp
         </button>
-        <button type="button" className="boton-secundario" onClick={alVer} disabled={vacia}>
-          Vista previa
-        </button>
         <button type="button" className="boton-primario" onClick={alDescargar} disabled={vacia}>
-          Descargar PDF
+          PDF
         </button>
       </div>
-    </header>
+    </section>
   );
 }
 
@@ -183,7 +341,8 @@ function PieCatalogo() {
         <>
           <button
             type="button"
-            className="mt-2 font-bold text-amber-700 underline"
+            className="mt-2 py-2 font-bold text-amber-700 underline"
+            aria-expanded={abierto}
             onClick={() => setAbierto((v) => !v)}
           >
             {abierto ? 'Ocultar' : 'Ver'} {incidencias.length} observaciones sobre el listado
