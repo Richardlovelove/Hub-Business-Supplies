@@ -62,8 +62,8 @@ Para cambiarle el destino a una herramienta que ya está, basta con su `href`.
 ## Publicación
 
 Cada empuje a `main` publica el hub en GitHub Pages a través de
-`.github/workflows/pages.yml`. Para activarlo, una sola vez:
-**Settings → Pages → Source: GitHub Actions**.
+`.github/workflows/pages.yml`. No hay que configurar nada a mano: el propio
+flujo enciende Pages la primera vez que corre.
 
 Al ser un sitio estático sin datos ni sesión, la página es pública para quien
 tenga el enlace. Lleva `noindex` para que no aparezca en buscadores, pero eso
