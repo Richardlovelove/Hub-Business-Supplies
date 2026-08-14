@@ -12,48 +12,31 @@
 
 import type {
   CotizacionGuardada,
-  Estado,
   FiltroHistorial,
   Identidad,
   PaginaHistorial,
   ErrorApi,
 } from '../../../compartido/historial';
 import type { Cotizacion } from '../dominio/tipos';
+import { almacenLocal } from './almacenLocal';
+import { FalloHistorial, type Almacen } from './contrato';
 
-export interface Almacen {
-  /** Quién está usando el hub. */
-  yo(): Promise<Identidad>;
-  /**
-   * Guarda una cotización emitida y devuelve su número.
-   *
-   * Sin número asignado, lo pide al consecutivo central. Con número, actualiza
-   * la que ya existe: bajar el PDF y luego mandar el WhatsApp es una sola
-   * cotización, no dos.
-   */
-  registrar(cotizacion: Cotizacion): Promise<{ numero: string; emitidaEn: string }>;
-  listar(filtro: FiltroHistorial): Promise<PaginaHistorial>;
-  abrir(numero: string): Promise<CotizacionGuardada<Cotizacion>>;
-  marcar(numero: string, estado: Estado, nota: string): Promise<void>;
-}
-
-export type CodigoFallo = ErrorApi['codigo'] | 'sin-conexion';
-
-/**
- * Un fallo ya traducido a algo que se le puede enseñar a una persona.
- *
- * `mensaje` va en español y se pinta tal cual; `message` lo hereda de `Error`
- * con el mismo texto, para que la consola y las trazas no salgan vacías.
- */
-export class FalloHistorial extends Error {
-  constructor(
-    readonly codigo: CodigoFallo,
-    readonly mensaje: string,
-  ) {
-    super(mensaje);
-  }
-}
+// El resto de la aplicación pide el historial por aquí y no tiene por qué
+// saber que el contrato vive en otro archivo.
+export { FalloHistorial } from './contrato';
+export type { Almacen, CodigoFallo } from './contrato';
 
 const BASE = '/api';
+
+/**
+ * La vista previa no tiene servidor detrás.
+ *
+ * Se decide al construir y no en marcha: el despliegue de producción nunca
+ * define `VITE_DEMO`, así que el almacén de mentira ni siquiera llega al
+ * paquete. Es lo que impide que una cotización de verdad acabe guardada en el
+ * navegador de alguien creyendo que quedó registrada.
+ */
+export const ES_DEMOSTRACION = import.meta.env.VITE_DEMO === '1';
 
 /**
  * Arma la dirección del listado a partir del filtro.
@@ -104,7 +87,7 @@ async function pedir<T>(url: string, opciones: RequestInit = {}): Promise<T> {
   return (await respuesta.json()) as T;
 }
 
-export const almacen: Almacen = {
+const almacenHttp: Almacen = {
   yo: () => pedir<Identidad>(`${BASE}/yo`),
 
   registrar: (cotizacion) =>
@@ -127,3 +110,5 @@ export const almacen: Almacen = {
     });
   },
 };
+
+export const almacen: Almacen = ES_DEMOSTRACION ? almacenLocal : almacenHttp;

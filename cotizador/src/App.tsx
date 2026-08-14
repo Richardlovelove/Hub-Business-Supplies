@@ -19,7 +19,7 @@ import { catalogo } from './dominio/catalogo';
 import { pesos } from './dominio/formato';
 import { EMPRESA } from './datos/empresa';
 import type { Cotizacion, Producto } from './dominio/tipos';
-import { almacen, FalloHistorial } from './historial/almacen';
+import { almacen, ES_DEMOSTRACION, FalloHistorial } from './historial/almacen';
 import { PantallaHistorial } from './historial/PantallaHistorial';
 import { abrirWhatsapp, copiarMensaje, descargarPdf, verPdf } from './ui/acciones';
 import { PanelCatalogo } from './ui/PanelCatalogo';
@@ -46,19 +46,39 @@ export default function App() {
   const estado = useCotizacion();
   const [ruta, ir] = useRuta();
 
-  if (ruta === 'historial') {
-    return (
-      <PantallaHistorial
-        alVolver={() => ir('cotizador')}
-        alReabrir={(guardada) => {
-          estado.despachar({ tipo: 'cargar', cotizacion: guardada });
-          ir('cotizador');
-        }}
-      />
-    );
-  }
+  return (
+    <>
+      {ES_DEMOSTRACION ? <AvisoDemostracion /> : null}
 
-  return <Cotizador estado={estado} alHistorial={() => ir('historial')} />;
+      {ruta === 'historial' ? (
+        <PantallaHistorial
+          alVolver={() => ir('cotizador')}
+          alReabrir={(guardada) => {
+            estado.despachar({ tipo: 'cargar', cotizacion: guardada });
+            ir('cotizador');
+          }}
+        />
+      ) : (
+        <Cotizador estado={estado} alHistorial={() => ir('historial')} />
+      )}
+    </>
+  );
+}
+
+/**
+ * La franja de la vista previa.
+ *
+ * Va arriba del todo, en ámbar y sin poderse cerrar, porque el riesgo que
+ * cubre es que alguien mande a un cliente un PDF salido de aquí. Los números
+ * de la demostración llevan «DEMO» dentro por la misma razón.
+ */
+function AvisoDemostracion() {
+  return (
+    <p className="bg-amber-100 px-4 py-2 text-center text-sm font-semibold text-amber-900">
+      Vista previa. Las cotizaciones no se guardan en ningún servidor: quedan en este navegador,
+      con números de mentira, y sólo las ve quien las hizo.
+    </p>
+  );
 }
 
 function Cotizador({

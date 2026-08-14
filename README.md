@@ -164,17 +164,55 @@ abriría una puerta lateral al historial saltándose la lista de correos.
 
 ### Y una vez publicado
 
-El hub estaba en GitHub Pages y el cotizador también. Cuando el dominio de
-Cloudflare responda, hay que **apagar Pages en los dos repositorios** (Settings
-→ Pages → Source: None); sus flujos de publicación ya se quitaron de aquí. Si
-no, quedan dos copias viejas en pie, públicas y sin historial, y alguien acabará
-usando la equivocada.
+Cuando el dominio de Cloudflare responda, hay que **apagar GitHub Pages en los
+dos repositorios** (Settings → Pages → Source: None): el del cotizador, que
+sirve la versión vieja sin historial, y el de este hub, que sirve la vista
+previa de aquí abajo. Si no, quedan copias en pie que nadie mantiene y alguien
+acabará usando la equivocada.
 
-Apagarlas cierra además una fuga que hoy está abierta: el catálogo que se
-empaqueta con el cotizador lleva **el costo de compra de 109 de los 114
-productos y el nombre del proveedor de 108**, y hoy cualquiera con el enlace de
-GitHub Pages puede leerlos. Detrás de Access esos datos sólo los ve el equipo,
-que es para quien están.
+Apagar la del cotizador cierra además una fuga abierta hoy: su paquete lleva
+**el costo de compra de 109 de los 114 productos y el proveedor de 108**, y
+cualquiera con el enlace puede descargarlo y leerlos. Detrás de Access esos
+datos sólo los ve el equipo, que es para quien están.
+
+---
+
+## La vista previa
+
+Mientras no haya nada en Cloudflare, cada empuje a `main` publica una versión
+**de muestra** en GitHub Pages:
+
+**https://richardlovelove.github.io/Hub-Business-Supplies/**
+
+Sirve para enseñar cómo va quedando —la portada, el cotizador, el PDF, la
+pantalla de historial— sin tener que montar antes la base de datos ni Access.
+
+Lo que se publica es lo que produce `npm run build`, o sea exactamente lo mismo
+que se sube a Cloudflare, con una diferencia: `VITE_DEMO=1`. Esa marca cambia
+dos cosas.
+
+**El historial se guarda en el navegador de quien mira.** Aquí no hay servidor,
+y sin servidor el cotizador ni siquiera dejaría emitir, porque el número lo da
+la base. Con la marca puesta entra `historial/almacenLocal.ts`, que hace de
+historial contra `localStorage`. No es compartido —cada quien ve lo suyo— y los
+números salen como `COT-DEMO-0001`, para que ningún PDF de éstos se confunda
+con uno de verdad. Sale además una franja ámbar diciéndolo, que no se puede
+cerrar.
+
+**El catálogo va sin costos ni proveedores.** La vista previa es pública, y su
+paquete se puede descargar y leer entero, así que ocultar el margen en pantalla
+no serviría de nada: el dato viajaría igual. Un complemento de Vite
+(`catalogoSinCostos`, en `cotizador/vite.config.ts`) los quita al construir. Los
+precios de venta sí van, porque sin ellos no habría nada que enseñar.
+
+Ninguna de las dos cosas llega a producción: el despliegue de Cloudflare no
+define `VITE_DEMO`, así que el almacén de mentira no entra en el paquete y el
+catálogo va completo. Es comprobable —`grep COT-DEMO publico/` después de un
+`npm run build` normal no encuentra nada.
+
+> Aun sin costos, la vista previa enseña los precios de venta a cualquiera con
+> el enlace. Conviene no repartirlo más allá de quien tenga que opinar, y
+> apagar Pages cuando Cloudflare esté en pie.
 
 ---
 
@@ -188,6 +226,7 @@ worker/           la API del historial y la verificación de Access
 compartido/       el contrato entre los dos: qué viaja por el cable
 migraciones/      el esquema de la base, en SQL
 scripts/          arma `publico/` a partir de la portada y del cotizador
+.github/          el flujo que publica la vista previa
 ```
 
 La portada **no se construye**: es un `index.html` con los estilos dentro y sin
@@ -201,11 +240,15 @@ en `publico/cotizador/` y copia la portada al lado.
 
 ### Cambiar de proveedor sin rehacer nada
 
-Todo lo que el cotizador sabe del servidor está en un archivo,
-`cotizador/src/historial/almacen.ts`, detrás de una interfaz. La pantalla llama
-a `almacen.registrar(...)` y no sabe si detrás hay Cloudflare, Supabase o una
-carpeta. Si algún día conviene mudarse, se reescribe ese archivo y el resto de
-la aplicación no se entera.
+Todo lo que el cotizador sabe del servidor está detrás de una interfaz,
+`cotizador/src/historial/contrato.ts`. La pantalla llama a
+`almacen.registrar(...)` y no sabe si detrás hay Cloudflare, Supabase o una
+carpeta. Si algún día conviene mudarse, se escribe otra implementación y el
+resto de la aplicación no se entera.
+
+Que eso no era palabrería se vio enseguida: la vista previa necesitaba un
+historial sin servidor y salió de ahí, `almacenLocal.ts`, sin tocar ni una
+línea de las pantallas.
 
 ### Por qué se verifica la firma del token
 

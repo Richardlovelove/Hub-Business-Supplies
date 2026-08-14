@@ -1,0 +1,77 @@
+name: Vista previa del hub
+
+# Publica en GitHub Pages una versión **de muestra** del hub, para poder ver
+# cómo va quedando antes de que exista nada en Cloudflare.
+#
+# Lo que se publica no es el repositorio tal cual: es lo que produce
+# `npm run build` en `publico/` —la portada más el cotizador ya construido—,
+# que es lo mismo que se subirá a Cloudflare. Publicar la raíz del repositorio
+# serviría el código fuente, y el cotizador saldría en blanco.
+#
+# La diferencia con producción es una sola: `VITE_DEMO=1`. Con esa marca, el
+# cotizador guarda el historial en el `localStorage` del navegador de quien
+# mira, en vez de en el servidor, porque aquí no hay servidor. Sale una franja
+# ámbar avisándolo y los números llevan «DEMO» dentro.
+#
+# En Settings → Pages, «Source» debe estar en «GitHub Actions».
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue a la vez. Si llegan dos empujes seguidos, el segundo espera en
+# lugar de pisar al primero a medias.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    name: Construir y publicar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            cotizador/package-lock.json
+
+      # Dos proyectos, dos instalaciones: el hub trae wrangler y el cotizador
+      # trae React y todo lo suyo.
+      - name: Instalar
+        run: |
+          npm ci
+          npm --prefix cotizador ci
+
+      - name: Pruebas
+        run: npm test
+
+      # `npm run build` corre `tsc --noEmit` antes de empaquetar, así que un
+      # error de tipos detiene la publicación en vez de publicarse.
+      - name: Construir la muestra
+        run: npm run build
+        env:
+          VITE_DEMO: '1'
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: publico
+
+      - id: despliegue
+        uses: actions/deploy-pages@v4
