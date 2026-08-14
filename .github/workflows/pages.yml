@@ -33,14 +33,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # `enablement: true` prende GitHub Pages en el repo si aún no lo está, en
-      # lugar de fallar pidiendo que alguien entre a Settings → Pages a hacerlo
-      # a mano. Es el paso que menos sentido tenía dejarle al usuario: es una
-      # sola vez, siempre igual, y el flujo ya tiene el permiso `pages: write`
-      # que hace falta.
+      # Sin `enablement: true`. Se probó, y el token del flujo no alcanza:
+      # «Create Pages site failed: Resource not accessible by integration».
+      # Crear el sitio de Pages pide permisos de administración del repo que
+      # `GITHUB_TOKEN` no tiene, así que el primer encendido va a mano —
+      # Settings → Pages → Source: GitHub Actions— una sola vez. De ahí en
+      # adelante este paso solo lee la configuración que ya existe.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

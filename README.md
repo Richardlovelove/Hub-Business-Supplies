@@ -14,11 +14,15 @@ enlaza.
 
 ## Qué enlaza hoy
 
-| Herramienta       | Qué es                                                        | A dónde va                                                  |
-| ----------------- | ------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Página web**    | El sitio público: catálogo, servicios y contacto               | `byslogistics.com.co`                                        |
-| **Cotizador**     | Arma la cotización y genera el PDF y el mensaje de WhatsApp    | `richardlovelove.github.io/Cotizador-Business-Supplies/`     |
-| **CRM · Chatbot** | Panel del bot multicanal: conversaciones, leads y conexiones   | `bys-logistics.abrinay1997.workers.dev/admin`                |
+| Herramienta       | Qué es                                                      | A dónde va                                               |
+| ----------------- | ----------------------------------------------------------- | -------------------------------------------------------- |
+| **Página web**    | El sitio público: catálogo, servicios y contacto             | `byslogistics-web.netlify.app`                            |
+| **Cotizador**     | Arma la cotización y genera el PDF y el mensaje de WhatsApp  | `richardlovelove.github.io/Cotizador-Business-Supplies/`  |
+| **CRM · Chatbot** | Panel del bot multicanal: conversaciones, leads y conexiones | `bys-logistics.abrinay1997.workers.dev/admin/overview`    |
+
+La página web todavía vive en la dirección de Netlify. El día que el dominio
+propio (`byslogistics.com.co`) quede publicado, hay que cambiar los dos
+enlaces que apuntan ahí: el de la tarjeta y el del pie de página.
 
 ---
 
@@ -62,8 +66,13 @@ Para cambiarle el destino a una herramienta que ya está, basta con su `href`.
 ## Publicación
 
 Cada empuje a `main` publica el hub en GitHub Pages a través de
-`.github/workflows/pages.yml`. No hay que configurar nada a mano: el propio
-flujo enciende Pages la primera vez que corre.
+`.github/workflows/pages.yml`.
+
+**Falta un paso a mano, una sola vez:** en GitHub, **Settings → Pages →
+Source: GitHub Actions**. Hasta que eso esté, el flujo falla con «Get Pages
+site failed». Es el mismo paso que en su día se hizo en el repo del cotizador,
+y no se puede automatizar: encender Pages pide permisos de administración que
+el token de Actions no tiene.
 
 Al ser un sitio estático sin datos ni sesión, la página es pública para quien
 tenga el enlace. Lleva `noindex` para que no aparezca en buscadores, pero eso
