@@ -1,0 +1,14 @@
+node_modules/
+dist/
+muestras/
+
+# El listado de precios en Excel no se versiona: pesa varios megas, cambia
+# cada mes y trae los costos de compra y los nombres de los proveedores. Se
+# deja aquí en local para regenerar el catálogo (ver README).
+datos-origen/*.xlsx
+datos-origen/*.xlsm
+
+*.local
+.DS_Store
+.vscode/
+.idea/

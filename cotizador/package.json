@@ -1,0 +1,33 @@
+{
+  "name": "cotizador-business-supplies",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cotizador de B&S Logistics: arma la cotización desde el listado de precios y genera el PDF y el mensaje de WhatsApp.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "catalogo": "python3 scripts/extraer_catalogo.py",
+    "logo": "python3 scripts/generar_logo.py public/marca/logo.png -o src/pdf/logo.ts"
+  },
+  "dependencies": {
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.0.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
+  }
+}

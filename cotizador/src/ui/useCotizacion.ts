@@ -1,0 +1,164 @@
+/**
+ * Estado de la cotización en curso.
+ *
+ * Un `useReducer` en lugar de varios `useState` porque casi ninguna acción es
+ * independiente: añadir una línea puede recalcular precios, cambiar de
+ * plantilla reescribe las condiciones, y todo hay que persistirlo junto.
+ */
+
+import { useEffect, useMemo, useReducer } from 'react';
+
+import { PLANTILLAS, type ClavePlantilla } from '../datos/condiciones';
+import { catalogo, productoPorId } from '../dominio/catalogo';
+import {
+  actualizarLinea,
+  cotizacionNueva,
+  descartarBorrador,
+  guardarBorrador,
+  lineaDesdeProducto,
+  numeroPrevisto,
+  recuperarBorrador,
+  siguienteNumero,
+} from '../dominio/cotizacion';
+import { totalesDeCotizacion } from '../dominio/precios';
+import { revisarCotizacion } from '../dominio/revision';
+import type { Cliente, Condiciones, Cotizacion, Linea, Producto } from '../dominio/tipos';
+
+type Accion =
+  | { tipo: 'agregar'; producto: Producto }
+  | { tipo: 'quitar'; id: string }
+  | { tipo: 'editarLinea'; id: string; cambios: Partial<Linea> }
+  | { tipo: 'moverLinea'; id: string; direccion: -1 | 1 }
+  | { tipo: 'editarCliente'; cambios: Partial<Cliente> }
+  | { tipo: 'editarCondiciones'; cambios: Partial<Condiciones> }
+  | { tipo: 'aplicarPlantilla'; clave: ClavePlantilla }
+  | {
+      tipo: 'editarCabecera';
+      cambios: Partial<Pick<Cotizacion, 'asesor' | 'fecha' | 'numero' | 'iva'>>;
+    }
+  | { tipo: 'reiniciar' }
+  | { tipo: 'confirmarNumero' }
+  | { tipo: 'actualizarPrecios' };
+
+function reducir(estado: Cotizacion, accion: Accion): Cotizacion {
+  switch (accion.tipo) {
+    case 'agregar': {
+      // El mismo producto puede ir dos veces (con y sin logo, dos medidas),
+      // así que se añade siempre una línea nueva en vez de sumar cantidades.
+      return { ...estado, lineas: [...estado.lineas, lineaDesdeProducto(accion.producto)] };
+    }
+
+    case 'quitar':
+      return { ...estado, lineas: estado.lineas.filter((l) => l.id !== accion.id) };
+
+    case 'editarLinea':
+      return {
+        ...estado,
+        lineas: estado.lineas.map((linea) =>
+          linea.id === accion.id
+            ? actualizarLinea(linea, accion.cambios, productoPorId(linea.productoId))
+            : linea,
+        ),
+      };
+
+    case 'moverLinea': {
+      const desde = estado.lineas.findIndex((l) => l.id === accion.id);
+      const hasta = desde + accion.direccion;
+      if (desde < 0 || hasta < 0 || hasta >= estado.lineas.length) return estado;
+      const lineas = [...estado.lineas];
+      const [movida] = lineas.splice(desde, 1);
+      lineas.splice(hasta, 0, movida!);
+      return { ...estado, lineas };
+    }
+
+    case 'editarCliente':
+      return { ...estado, cliente: { ...estado.cliente, ...accion.cambios } };
+
+    case 'editarCondiciones':
+      return { ...estado, condiciones: { ...estado.condiciones, ...accion.cambios } };
+
+    case 'aplicarPlantilla': {
+      const plantilla = PLANTILLAS.find((p) => p.clave === accion.clave);
+      if (!plantilla) return estado;
+      // Las observaciones son del asesor, no de la plantilla: se conservan.
+      return {
+        ...estado,
+        condiciones: {
+          ...plantilla.condiciones,
+          incluye: [...plantilla.condiciones.incluye],
+          observaciones: estado.condiciones.observaciones,
+        },
+      };
+    }
+
+    case 'editarCabecera':
+      return { ...estado, ...accion.cambios };
+
+    case 'confirmarNumero': {
+      // El consecutivo se gasta al emitir el documento, no al abrir la
+      // pantalla: así una cotización que nadie llegó a enviar no deja un
+      // hueco en la numeración. `siguienteNumero` devuelve el mismo texto que
+      // ya se ve —`numeroPrevisto` no consume— así que el número no cambia
+      // delante del asesor; lo que avanza es el contador de la siguiente.
+      if (estado.numero !== numeroPrevisto(estado.fecha)) return estado; // Numerada a mano.
+      return { ...estado, numero: siguienteNumero(estado.fecha) };
+    }
+
+    case 'actualizarPrecios': {
+      // Vuelve a pedirle el precio al listado vigente en todas las líneas que
+      // no lleven precio escrito a mano, y deja constancia de con qué versión
+      // del catálogo quedó calculada la cotización.
+      const lineas = estado.lineas.map((linea) => {
+        const producto = productoPorId(linea.productoId);
+        if (!producto || linea.precioManual) return linea;
+        return actualizarLinea(linea, { precioManual: false }, producto);
+      });
+      return { ...estado, lineas, catalogoVersion: catalogo.version };
+    }
+
+    case 'reiniciar':
+      descartarBorrador();
+      return cotizacionNueva();
+
+    default:
+      return estado;
+  }
+}
+
+export function useCotizacion() {
+  const [cotizacion, despachar] = useReducer(
+    reducir,
+    null,
+    () => recuperarBorrador() ?? cotizacionNueva(),
+  );
+
+  useEffect(() => {
+    guardarBorrador(cotizacion);
+  }, [cotizacion]);
+
+  const totales = useMemo(
+    () => totalesDeCotizacion(cotizacion.lineas, cotizacion.iva),
+    [cotizacion.lineas, cotizacion.iva],
+  );
+
+  /** Ids de productos ya presentes, para marcarlos en el catálogo. */
+  const productosEnUso = useMemo(
+    () => new Set(cotizacion.lineas.map((l) => l.productoId)),
+    [cotizacion.lineas],
+  );
+
+  const revision = useMemo(
+    () => revisarCotizacion(cotizacion.lineas, productoPorId),
+    [cotizacion.lineas],
+  );
+
+  /** Alertas indexadas por línea, para que cada tarjeta pinte las suyas. */
+  const alertasPorLinea = useMemo(
+    () => new Map(revision.porLinea.map((r) => [r.lineaId, r.alertas])),
+    [revision],
+  );
+
+  return { cotizacion, despachar, totales, productosEnUso, revision, alertasPorLinea };
+}
+
+export type Despachar = ReturnType<typeof useCotizacion>['despachar'];

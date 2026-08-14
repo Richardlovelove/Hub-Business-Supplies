@@ -1,0 +1,5022 @@
+{
+  "generadoEl": "2026-08-13",
+  "version": "fcc0ed9a03c1",
+  "origen": "LISTADO_PRECIOS_2026.xlsx",
+  "iva": 0.19,
+  "categorias": [
+    "Precintos plásticos",
+    "Precintos de guaya",
+    "Precintos metálicos y de cable",
+    "Chapas y candados",
+    "Etiquetas de seguridad",
+    "Cintas de seguridad",
+    "Bolsas y sobres de seguridad",
+    "Tulas de seguridad",
+    "Air bags e infladores",
+    "Cajas y contenedores",
+    "Control de humedad",
+    "Identificación",
+    "Kits de seguridad",
+    "Accesorios",
+    "Servicios de personalización"
+  ],
+  "productos": [
+    {
+      "id": "precinto-ancla-1",
+      "nombre": "PRECINTO ANCLA 1",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1900.0,
+          "logo": true,
+          "nota": "PRECIO X CM ADICIONAL $ 5"
+        },
+        {
+          "desde": 500,
+          "unitario": 1600.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1500.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1200.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1040.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "costoReferencia": 792.0,
+      "notas": [
+        "PRECIO X CM ADICIONAL $ 5"
+      ]
+    },
+    {
+      "id": "precinto-ancla-cajas",
+      "nombre": "PRECINTO ANCLA CAJAS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 750.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 650.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 350.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 280.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 260.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO ANCLA CAJAS",
+      "costoReferencia": 200.0
+    },
+    {
+      "id": "precinto-ancla-mini",
+      "nombre": "PRECINTO ANCLA MINI",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1900.0,
+          "logo": true,
+          "nota": "PRECIO X CM ADICIONAL $ 5"
+        },
+        {
+          "desde": 500,
+          "unitario": 1600.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1500.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1200.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1040.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "SELLO No. 15 (NORMARH) GUAYA 25 CMS",
+      "costoReferencia": 792.0,
+      "notas": [
+        "PRECIO X CM ADICIONAL $ 5"
+      ]
+    },
+    {
+      "id": "precinto-correa-03-doble-cierre-35-cms",
+      "nombre": "PRECINTO CORREA 03 DOBLE CIERRE 35 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 360.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 300.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 280.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 260.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO CORREA 03 DOBLE CIERRE 35 CMS",
+      "costoReferencia": 185.0
+    },
+    {
+      "id": "precinto-correa-dentada-mini",
+      "nombre": "PRECINTO CORREA DENTADA MINI",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 320.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 240.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO CORREA DENTADA MINI",
+      "costoReferencia": 180.0
+    },
+    {
+      "id": "precinto-correa-dentada-plana-30-cms",
+      "nombre": "PRECINTO CORREA DENTADA PLANA 30 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 340.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 290.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 220.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "Correa cilíndrica dentada VP01 36 cm",
+      "costoReferencia": 165.0
+    },
+    {
+      "id": "precinto-correa-espiral-24-cms",
+      "nombre": "PRECINTO CORREA ESPIRAL 24 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 350.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 300.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 290.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 240.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "Correa cilíndrica dentada VP05 24,5 cm",
+      "costoReferencia": 180.0
+    },
+    {
+      "id": "precinto-correa-espiral-33-cms",
+      "nombre": "PRECINTO CORREA ESPIRAL 33 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 450.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 390.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 360.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 330.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 290.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "Correa cilíndrica dentada VP01 36 cm",
+      "costoReferencia": 220.0
+    },
+    {
+      "id": "precinto-dado-grande-tp-con-zuncho-de-30-cms",
+      "nombre": "PRECINTO DADO GRANDE TP CON ZUNCHO DE 30 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 1000.0,
+          "logo": true,
+          "nota": "TORNILLO METALICO TM AUMENTAR $ 40"
+        },
+        {
+          "desde": 1000,
+          "unitario": 820.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 750.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 700.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 650.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO ZUNCHO GRANDE VP40 TP",
+      "costoReferencia": 487.0,
+      "notas": [
+        "TORNILLO METALICO TM AUMENTAR $ 40"
+      ]
+    },
+    {
+      "id": "precinto-dado-pequeno-tp-con-zuncho-de-30-cms",
+      "nombre": "PRECINTO DADO PEQUEÑO TP CON ZUNCHO DE 30 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 800.0,
+          "logo": true,
+          "nota": "TORNILLO METALICO TM AUMENTAR $ 50"
+        },
+        {
+          "desde": 1000,
+          "unitario": 700.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 650.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 600.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 550.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO DADO ZUNCHO PEQUEÑO VP 39",
+      "costoReferencia": 422.0,
+      "notas": [
+        "TORNILLO METALICO TM AUMENTAR $ 50"
+      ]
+    },
+    {
+      "id": "precinto-dentado-doble-cierre-35-cms",
+      "nombre": "PRECINTO DENTADO DOBLE CIERRE 35 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 900.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 550.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 400.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 350.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 320.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 300.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO BGP 35 CMS (CYC TRADING)",
+      "costoReferencia": 227.0
+    },
+    {
+      "id": "precinto-dentado-doble-cierre-39-cms",
+      "nombre": "PRECINTO DENTADO DOBLE CIERRE 39 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 390.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 330.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 320.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 300.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 20000,
+          "unitario": 240.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO VP04 (VEPASA)",
+      "costoReferencia": 180.0
+    },
+    {
+      "id": "precinto-doble-dentado-38-cms",
+      "nombre": "PRECINTO DOBLE DENTADO 38 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 900.0,
+          "logo": false
+        },
+        {
+          "desde": 300,
+          "unitario": 650.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 550.0,
+          "logo": false
+        },
+        {
+          "desde": 100,
+          "unitario": 1000.0,
+          "logo": true,
+          "nota": "DEBE ASUMIR COSTO CLISE"
+        },
+        {
+          "desde": 300,
+          "unitario": 800.0,
+          "logo": true
+        },
+        {
+          "desde": 500,
+          "unitario": 700.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 420.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 360.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 320.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 290.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 260.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO EASY LOCK 38 CMS (MAYGER)",
+      "costoReferencia": 195.0,
+      "notas": [
+        "DEBE ASUMIR COSTO CLISE"
+      ]
+    },
+    {
+      "id": "precinto-multiproposito",
+      "nombre": "PRECINTO MULTIPROPOSITO",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 2500.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 2200.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1850.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 1750.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO MULTIPROPOSITO",
+      "costoReferencia": 1330.0
+    },
+    {
+      "id": "precinto-plano-36-cms",
+      "nombre": "PRECINTO PLANO 36 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 440.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 400.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 360.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 340.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO PLP 36 CMS (CYC TRADING)",
+      "costoReferencia": 254.34
+    },
+    {
+      "id": "precinto-plano-42-cms",
+      "nombre": "PRECINTO PLANO 42 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 950.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 700.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 520.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 480.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 450.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 420.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 350.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO VP03B (VEPASA)",
+      "costoReferencia": 265.0
+    },
+    {
+      "id": "precinto-plano-bc-42-cms",
+      "nombre": "PRECINTO PLANO BC 42 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 950.0,
+          "logo": false,
+          "nota": "COLORES A OFRECER AMARILLO, AZUL, ROJO, VERDE, BLANCO Y NEGRO"
+        },
+        {
+          "desde": 500,
+          "unitario": 700.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 450.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 420.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 410.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 380.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 350.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO PLANO (RPK)",
+      "costoReferencia": 245.0,
+      "notas": [
+        "COLORES A OFRECER AMARILLO, AZUL, ROJO, VERDE, BLANCO Y NEGRO"
+      ]
+    },
+    {
+      "id": "precinto-tubular-1-24-y-38-cms",
+      "nombre": "PRECINTO TUBULAR 1 24 Y 38 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 950.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 750.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 550.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 500.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 470.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 430.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO LASER PLUS 24 Y 38 CMS (GLOBAL LASER)",
+      "costoReferencia": 329.0
+    },
+    {
+      "id": "precinto-tubular-2-20-cms",
+      "nombre": "PRECINTO TUBULAR 2 20 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 700.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 440.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 390.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 360.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 330.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO UZP 20 CMS (CYC TRADING)",
+      "costoReferencia": 240.0
+    },
+    {
+      "id": "precinto-tubular-2-41-cms",
+      "nombre": "PRECINTO TUBULAR 2 41 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 590.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 560.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 520.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 500.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 410.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO VP06 (VEPASA)",
+      "costoReferencia": 315.0
+    },
+    {
+      "id": "precinto-tubular-2-70-cms",
+      "nombre": "PRECINTO TUBULAR 2 70 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 1200.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1100.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 1000.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 980.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 910.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO VP09 (VEPASA)",
+      "costoReferencia": 695.0
+    },
+    {
+      "id": "precinto-tubular-3-30-cms",
+      "nombre": "PRECINTO TUBULAR 3 30 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 460.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 390.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 370.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 340.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO MXP 30 CMS (CYC TRADING)",
+      "costoReferencia": 258.55
+    },
+    {
+      "id": "precinto-tubular-3-35-cms",
+      "nombre": "PRECINTO TUBULAR 3 35 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 500.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 430.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 400.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 380.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO MLP 35 CMS (CYC TRADING)",
+      "costoReferencia": 284.0
+    },
+    {
+      "id": "precinto-zuncho-paleta-zuncho-40-cms",
+      "nombre": "PRECINTO ZUNCHO PALETA ZUNCHO 40 CMS",
+      "categoria": "Precintos plásticos",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 1000.0,
+          "logo": true,
+          "nota": "PRECIO X CM ADICIONAL $ 1,4"
+        },
+        {
+          "desde": 1000,
+          "unitario": 870.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 810.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 730.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 680.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO ZUNCHO PALETA VP41",
+      "costoReferencia": 521.0,
+      "notas": [
+        "PRECIO X CM ADICIONAL $ 1,4"
+      ]
+    },
+    {
+      "id": "precinto-botella-bs-02",
+      "nombre": "PRECINTO BOTELLA BS - 02",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 10,
+          "unitario": 5500.0,
+          "logo": false
+        },
+        {
+          "desde": 50,
+          "unitario": 3600.0,
+          "logo": false
+        },
+        {
+          "desde": 100,
+          "unitario": 3000.0,
+          "logo": false,
+          "nota": "MARCACION LOGO $ 60,000 + IVA"
+        },
+        {
+          "desde": 300,
+          "unitario": 2700.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 2500.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 2300.0,
+          "logo": false
+        },
+        {
+          "desde": 300,
+          "unitario": 3000.0,
+          "logo": true
+        },
+        {
+          "desde": 500,
+          "unitario": 2700.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 2500.0,
+          "logo": true
+        }
+      ],
+      "minimo": 10,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO BOTELLA",
+      "costoReferencia": 1550.0,
+      "notas": [
+        "MARCACION LOGO $ 60,000 + IVA"
+      ]
+    },
+    {
+      "id": "precinto-botella-one-seal",
+      "nombre": "PRECINTO BOTELLA ONE SEAL",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 6500.0,
+          "logo": false
+        },
+        {
+          "desde": 300,
+          "unitario": 5800.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 6000.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 5800.0,
+          "logo": false
+        },
+        {
+          "desde": 300,
+          "unitario": 6800.0,
+          "logo": true
+        },
+        {
+          "desde": 500,
+          "unitario": 6200.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 5900.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO ONESEAL REF. 79 T06 NUMERACION DOBLE",
+      "costoReferencia": 4414.0
+    },
+    {
+      "id": "precinto-dado-grande-tp-con-guaya-de-30-cms",
+      "nombre": "PRECINTO DADO GRANDE TP CON GUAYA DE 30 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 1100.0,
+          "logo": true,
+          "nota": "TORNILLO METALICO TM AUMENTAR $ 60"
+        },
+        {
+          "desde": 1000,
+          "unitario": 950.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 900.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 820.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 760.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO GUAYA GRANDE VP38 TP",
+      "costoReferencia": 580.0,
+      "notas": [
+        "TORNILLO METALICO TM AUMENTAR $ 60"
+      ]
+    },
+    {
+      "id": "precinto-dado-pequeno-tp-con-guaya-de-30-cms",
+      "nombre": "PRECINTO DADO PEQUEÑO TP CON GUAYA DE 30 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 1000.0,
+          "logo": true,
+          "nota": "TORNILLO METALICO TM AUMENTAR $ 60"
+        },
+        {
+          "desde": 1000,
+          "unitario": 830.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 780.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 730.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 670.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO DADO PEQUEÑO VP37 TP",
+      "costoReferencia": 515.0,
+      "notas": [
+        "TORNILLO METALICO TM AUMENTAR $ 60"
+      ]
+    },
+    {
+      "id": "precinto-guaya-botella-130-cms",
+      "nombre": "PRECINTO GUAYA - BOTELLA 130 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 13500.0,
+          "logo": false
+        },
+        {
+          "desde": 10,
+          "unitario": 11500.0,
+          "logo": false
+        },
+        {
+          "desde": 20,
+          "unitario": 11000.0,
+          "logo": false
+        },
+        {
+          "desde": 50,
+          "unitario": 10500.0,
+          "logo": false
+        },
+        {
+          "desde": 100,
+          "unitario": 9500.0,
+          "logo": false
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO BOTELLA GUAYA TOTAL 130 CMS",
+      "costoReferencia": 7000.0
+    },
+    {
+      "id": "precinto-guaya-ref-01-120-cms",
+      "nombre": "PRECINTO GUAYA REF. 01 - 120 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 5400.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 4000.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 3700.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 3600.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 3300.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 4150.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 3800.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 3700.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 3400.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "SELLO CF 2.0 T 120 CMS",
+      "costoReferencia": 2150.0
+    },
+    {
+      "id": "precinto-guaya-ref-01-40-cms",
+      "nombre": "PRECINTO GUAYA REF. 01 - 40 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 3300.0,
+          "logo": false,
+          "nota": "2700 de 60 x 500"
+        },
+        {
+          "desde": 500,
+          "unitario": 2400.0,
+          "logo": false,
+          "nota": "2600 para mil en 60 cms"
+        },
+        {
+          "desde": 1000,
+          "unitario": 2300.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 2200.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 2000.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 2550.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 2400.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 2300.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 1950.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "SELLO CF 2.0 T 40 CMS",
+      "costoReferencia": 1300.0,
+      "notas": [
+        "2700 de 60 x 500",
+        "2600 para mil en 60 cms"
+      ]
+    },
+    {
+      "id": "precinto-guaya-ref-01-de-60-cms",
+      "nombre": "PRECINTO GUAYA REF. 01 DE 60 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 3400.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 2500.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 2400.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 2200.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 2100.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 2650.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 2500.0,
+          "logo": true,
+          "nota": "1500 $2400 + iva"
+        },
+        {
+          "desde": 2000,
+          "unitario": 2300.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 1950.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "DELLO REFE 01 DE 60 CMS",
+      "costoReferencia": 1350.0,
+      "notas": [
+        "1500 $2400 + iva"
+      ]
+    },
+    {
+      "id": "precinto-guaya-ref-02-120-cms",
+      "nombre": "PRECINTO GUAYA REF. 02 - 120 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 3600.0,
+          "logo": false
+        },
+        {
+          "desde": 300,
+          "unitario": 3100.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 2700.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 2700.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 2500.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 2400.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 2900.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 2800.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 2600.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 2500.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "SELLO DH-K2 120 CMS",
+      "costoReferencia": 1550.0
+    },
+    {
+      "id": "precinto-guaya-ref-02-40-cms",
+      "nombre": "PRECINTO GUAYA REF. 02 - 40 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2300.0,
+          "logo": false
+        },
+        {
+          "desde": 300,
+          "unitario": 1800.0,
+          "logo": false,
+          "nota": "DISTRIBUIDOR 10% DESCUENTO"
+        },
+        {
+          "desde": 500,
+          "unitario": 1600.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 1500.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 1400.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 1300.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 1750.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1600.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1500.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 1250.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "SELLO DH-K2 40 CMS",
+      "costoReferencia": 900.0,
+      "notas": [
+        "DISTRIBUIDOR 10% DESCUENTO"
+      ]
+    },
+    {
+      "id": "precinto-guaya-ref-02-60-cms",
+      "nombre": "PRECINTO GUAYA REF. 02 - 60 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2500.0,
+          "logo": false
+        },
+        {
+          "desde": 300,
+          "unitario": 2000.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 1700.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 1600.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 1500.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 1400.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 1850.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1700.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1600.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1500.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "SELLO DH-K2 60 CMS",
+      "costoReferencia": 1000.0
+    },
+    {
+      "id": "precinto-guaya-tornillo",
+      "nombre": "PRECINTO GUAYA TORNILLO",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 4400.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 4000.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 3700.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 3500.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO CABLE VP28 GUAYA 40 CMS",
+      "costoReferencia": 2690.0
+    },
+    {
+      "id": "precinto-rotor-3-guaya-30-cms",
+      "nombre": "PRECINTO ROTOR 3 GUAYA 30 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2150.0,
+          "logo": true,
+          "nota": "PRECIO X CM ADICIONAL $ 5"
+        },
+        {
+          "desde": 500,
+          "unitario": 1400.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1300.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1200.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1050.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "SELLO No. 13 (NORMARH) GUAYA 20 CMS",
+      "costoReferencia": 785.0,
+      "notas": [
+        "PRECIO X CM ADICIONAL $ 5"
+      ]
+    },
+    {
+      "id": "precinto-rotor-4-vp-guaya-30-cms",
+      "nombre": "PRECINTO ROTOR 4 VP GUAYA 30 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 1200.0,
+          "logo": true,
+          "nota": "PRECIO X CM ADICIONAL $ 5,50"
+        },
+        {
+          "desde": 1000,
+          "unitario": 1100.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1000.0,
+          "logo": true
+        },
+        {
+          "desde": 3500,
+          "unitario": 900.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 850.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "SELLO VP30 BD Sello rotor en bandeja Guaya 7 filamentos 30 cms",
+      "costoReferencia": 610.0,
+      "notas": [
+        "PRECIO X CM ADICIONAL $ 5,50"
+      ]
+    },
+    {
+      "id": "precinto-rotor-ref-01-guaya-20-cms",
+      "nombre": "PRECINTO ROTOR REF 01 GUAYA 20 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2150.0,
+          "logo": true,
+          "nota": "PRECIO X CM ADICIONAL $ 5"
+        },
+        {
+          "desde": 500,
+          "unitario": 1100.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1000.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 900.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 780.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "SELLO No. 4 (NORMARH) GUAYA 20 CMS",
+      "costoReferencia": 599.0,
+      "notas": [
+        "PRECIO X CM ADICIONAL $ 5"
+      ]
+    },
+    {
+      "id": "precinto-tornillo-9-guaya-30-cms",
+      "nombre": "PRECINTO TORNILLO 9 GUAYA 30 CMS",
+      "categoria": "Precintos de guaya",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2150.0,
+          "logo": true,
+          "nota": "PRECIO X CM ADICIONAL $ 5"
+        },
+        {
+          "desde": 500,
+          "unitario": 1300.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1200.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1100.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1000.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "SELLO No. 10C (NORMARH)",
+      "costoReferencia": 779.0,
+      "notas": [
+        "PRECIO X CM ADICIONAL $ 5"
+      ]
+    },
+    {
+      "id": "precinto-cable-nylon-40-cms",
+      "nombre": "PRECINTO CABLE NYLON 40 CMS",
+      "categoria": "Precintos metálicos y de cable",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2400.0,
+          "logo": false,
+          "nota": "pendiente subir a la pagina"
+        },
+        {
+          "desde": 300,
+          "unitario": 1900.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 1700.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 1600.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 1500.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 1400.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 1850.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1700.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1600.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1500.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "PRECINTO CABLE NYLON 40 CMS",
+      "costoReferencia": 950.0,
+      "notas": [
+        "pendiente subir a la pagina"
+      ]
+    },
+    {
+      "id": "precinto-metalico-cinta-bola",
+      "nombre": "PRECINTO METALICO CINTA BOLA",
+      "categoria": "Precintos metálicos y de cable",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 1300.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1150.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1050.0,
+          "logo": true
+        },
+        {
+          "desde": 3000,
+          "unitario": 980.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 900.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO CINTA METALICA 20 CMS",
+      "costoReferencia": 690.0
+    },
+    {
+      "id": "chapa-de-seguridad",
+      "nombre": "CHAPA DE SEGURIDAD",
+      "categoria": "Chapas y candados",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2150.0,
+          "logo": true
+        },
+        {
+          "desde": 500,
+          "unitario": 1800.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1600.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1500.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1300.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "CHAPA DE SEGURIDAD",
+      "costoReferencia": 961.0
+    },
+    {
+      "id": "precinto-candado",
+      "nombre": "PRECINTO CANDADO",
+      "categoria": "Chapas y candados",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2150.0,
+          "logo": true
+        },
+        {
+          "desde": 500,
+          "unitario": 1400.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 1200.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 1100.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 1040.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "SELLO No. 10C (NORMARH)",
+      "costoReferencia": 753.0
+    },
+    {
+      "id": "precinto-candado-cyc",
+      "nombre": "PRECINTO CANDADO CYC",
+      "categoria": "Chapas y candados",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 430.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 370.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 340.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 320.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "PRECINTO CANDADO (CYC TRADING)",
+      "costoReferencia": 242.0
+    },
+    {
+      "id": "etiqueta-autodestructible-3-2-x-1-5-cms",
+      "nombre": "ETIQUETA AUTODESTRUCTIBLE 3.2 X 1.5 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 390.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 300.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 230.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 210.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA AUTODESTRUCTIBLE 3.2 X 1.5 CMS",
+      "costoReferencia": 150.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-autodestructible-5-0-x-2-5-cms",
+      "nombre": "ETIQUETA AUTODESTRUCTIBLE 5.0 X 2.5 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 530.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 410.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 310.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 290.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 270.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA AUTODESTRUCTIBLE 5.0 X 2.5 CMS",
+      "costoReferencia": 205.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-holograma-1-3-x-1-0-cms-plateado-dorado",
+      "nombre": "ETIQUETA HOLOGRAMA 1.3 X 1.0 CMS (PLATEADO - DORADO)",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 230.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 220.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 160.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 120.0,
+          "logo": true
+        },
+        {
+          "desde": 50000,
+          "unitario": 100.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 1.3 X 1.0 CMS (PLATEADO - DORADO)",
+      "costoReferencia": 75.0
+    },
+    {
+      "id": "etiqueta-holograma-2-2-x-1-5-cms-plateado-azul-turquesa-rojo-verde-violeta-dorado-azul-cielo-gris-mate",
+      "nombre": "ETIQUETA HOLOGRAMA 2.2 X 1.5 CMS Plateado, Azul Turquesa, Rojo. Verde, Violeta, Dorado, Azul cielo, Gris mate.",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 250.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 240.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 180.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 140.0,
+          "logo": true
+        },
+        {
+          "desde": 50000,
+          "unitario": 100.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 2.2 X 1.5 CMS Plateado, Azul Turquesa, Rojo. Verde, Violeta, Dorado, Azul cielo, Gris mate.",
+      "costoReferencia": 70.0
+    },
+    {
+      "id": "etiqueta-holograma-3-2-x-2-5-cms-azul-turquesa",
+      "nombre": "ETIQUETA HOLOGRAMA 3.2 x 2.5 CMS AZUL TURQUESA",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 290.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 250.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 230.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 3.2 x 2.5 CMS AZUL TURQUESA",
+      "costoReferencia": 170.0
+    },
+    {
+      "id": "etiqueta-holograma-3-6-x-2-3-transparente",
+      "nombre": "ETIQUETA HOLOGRAMA 3.6 x 2.3 TRANSPARENTE",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 290.0,
+          "logo": false
+        },
+        {
+          "desde": 2000,
+          "unitario": 270.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 230.0,
+          "logo": false
+        },
+        {
+          "desde": 10000,
+          "unitario": 200.0,
+          "logo": false
+        },
+        {
+          "desde": 1000,
+          "unitario": 310.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 280.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 240.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 210.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "ETIQUETA HOLOGRAMA 3.6 x 2.3 TRANSPARENTE",
+      "costoReferencia": 145.0
+    },
+    {
+      "id": "etiqueta-holograma-4-0-x-1-0-cms-plateado-dorado",
+      "nombre": "ETIQUETA HOLOGRAMA 4.0 X 1.0 CMS Plateado - Dorado",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 280.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 220.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 170.0,
+          "logo": true
+        },
+        {
+          "desde": 50000,
+          "unitario": 170.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 4.0 X 1.0 CMS Plateado - Dorado",
+      "costoReferencia": 110.0
+    },
+    {
+      "id": "etiqueta-holograma-4-2-x-1-8-cms-rojo",
+      "nombre": "ETIQUETA HOLOGRAMA 4.2 x 1.8 CMS ROJO",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 370.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 340.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 220.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 4.2 x 1.8 CMS ROJO",
+      "costoReferencia": 166.0
+    },
+    {
+      "id": "etiqueta-holograma-4-6-x-1-7-cms-rojo",
+      "nombre": "ETIQUETA HOLOGRAMA 4.6 x 1.7 CMS ROJO",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 310.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 280.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 250.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 210.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 4.6 x 1.7 CMS ROJO",
+      "costoReferencia": 156.0
+    },
+    {
+      "id": "etiqueta-holograma-4-7-x-2-2-cms-dorado-azul-cielo-plateado-azul-turquesa",
+      "nombre": "ETIQUETA HOLOGRAMA 4.7 X 2.2 CMS Dorado, Azul cielo, plateado, azul turquesa",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 410.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 380.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 330.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 50000,
+          "unitario": 220.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 4.7 X 2.2 CMS Dorado, Azul cielo, plateado, azul turquesa",
+      "costoReferencia": 160.0
+    },
+    {
+      "id": "etiqueta-holograma-4-7-x-2-5-cms-dorado-plateado",
+      "nombre": "ETIQUETA HOLOGRAMA 4.7 x 2.5 CMS DORADO - PLATEADO",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 230.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 210.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 160.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 140.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 4.7 x 2.5 CMS DORADO - PLATEADO",
+      "costoReferencia": 100.0
+    },
+    {
+      "id": "etiqueta-holograma-5-0-x-2-0-cms-plateado-dorado-azul-turquesa",
+      "nombre": "ETIQUETA HOLOGRAMA 5.0 x 2.0 CMS PLATEADO, DORADO, AZUL TURQUESA",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 450.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 430.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 340.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 280.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 5.0 x 2.0 CMS PLATEADO, DORADO, AZUL TURQUESA",
+      "costoReferencia": 210.0
+    },
+    {
+      "id": "etiqueta-holograma-7-x-1-cms-plateado-y-dorado",
+      "nombre": "ETIQUETA HOLOGRAMA 7 x 1 CMS PLATEADO Y DORADO",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 340.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 320.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 220.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA 7 x 1 CMS PLATEADO Y DORADO",
+      "costoReferencia": 165.0
+    },
+    {
+      "id": "etiqueta-holograma-redonda-16-mm-plateado-dorado",
+      "nombre": "ETIQUETA HOLOGRAMA REDONDA 16 MM PLATEADO - DORADO",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 240.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 200.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 180.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA REDONDA 16 MM PLATEADO - DORADO",
+      "costoReferencia": 137.0
+    },
+    {
+      "id": "etiqueta-holograma-redonda-25-mm-plateado-dorado",
+      "nombre": "ETIQUETA HOLOGRAMA REDONDA 25 MM PLATEADO - DORADO",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 290.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 230.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 190.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA REDONDA 25 MM PLATEADO - DORADO",
+      "costoReferencia": 146.0
+    },
+    {
+      "id": "etiqueta-holograma-redonda-35-mm-plateado-dorado",
+      "nombre": "ETIQUETA HOLOGRAMA REDONDA 35 MM PLATEADO - DORADO",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 450.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 420.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 370.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 330.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA HOLOGRAMA REDONDA 35 MM PLATEADO - DORADO",
+      "costoReferencia": 250.0
+    },
+    {
+      "id": "etiqueta-no-transfer-5-x-3-cms",
+      "nombre": "ETIQUETA NO TRANSFER 5 X 3 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 440.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 340.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 290.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 240.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA NO TRANSFER 5 X 3 CMS",
+      "costoReferencia": 170.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-opened-10-x-5-cms",
+      "nombre": "ETIQUETA OPENED 10 X 5 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 550.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 520.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 5000,
+          "unitario": 450.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 380.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA OPENED 10 X 5 CMS",
+      "costoReferencia": 265.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-opened-3-2-x-1-5-cms",
+      "nombre": "ETIQUETA OPENED 3.2 X 1.5 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 150.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 120.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 110.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 100.0,
+          "logo": false
+        },
+        {
+          "desde": 10000,
+          "unitario": 90.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 220.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 170.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 150.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 130.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 120.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "ETIQUETA VOID PLATA MATE 32 X 15 MM HOLOGRAPHIC",
+      "costoReferencia": 35.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-opened-5-0-x-1-0-cms-y-huella-verde",
+      "nombre": "ETIQUETA OPENED 5.0 X 1.0 CMS y huella verde",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 200.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 150.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 5000,
+          "unitario": 120.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 100.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA OPENED 5,0 X 1,0 CMS",
+      "costoReferencia": 58.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-opened-5-0-x-2-5-cms",
+      "nombre": "ETIQUETA OPENED 5.0 X 2.5 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 210.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 170.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 150.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 140.0,
+          "logo": false
+        },
+        {
+          "desde": 10000,
+          "unitario": 120.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 340.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 250.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 210.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 190.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 180.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "ETIQUETA OPENED PLATA MATE 50 X 25 MM HOLOGRAPHIC 35 MICRAS",
+      "costoReferencia": 55.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-opened-5-0-x-2-5-cms-naranja-blanca",
+      "nombre": "ETIQUETA OPENED 5.0 X 2.5 CMS NARANJA - BLANCA",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 290.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 210.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 180.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 160.0,
+          "logo": false
+        },
+        {
+          "desde": 10000,
+          "unitario": 150.0,
+          "logo": false
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "ETIQUETA VOID PLATA MATE 50 X 25 MM HOLOGRAPHIC",
+      "costoReferencia": 70.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "etiqueta-opened-6-0-x-3-0-cms-verde",
+      "nombre": "ETIQUETA OPENED 6.0 X 3.0 CMS VERDE",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 290.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 210.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 180.0,
+          "logo": false
+        },
+        {
+          "desde": 5000,
+          "unitario": 160.0,
+          "logo": false,
+          "nota": "CAFÉ, ROJO Y AZUL OSCURO PARA MINIMO 20,000 UDS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 150.0,
+          "logo": false
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "ETIQUETA VOID PLATA MATE 50 X 25 MM HOLOGRAPHIC",
+      "costoReferencia": 85.0,
+      "notas": [
+        "NO INCLUYE FLETE",
+        "CAFÉ, ROJO Y AZUL OSCURO PARA MINIMO 20,000 UDS"
+      ]
+    },
+    {
+      "id": "etiqueta-opened-azul-claro-2-2-x-1-5-cms",
+      "nombre": "ETIQUETA OPENED AZUL CLARO 2.2 X 1.5 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 230.0,
+          "logo": true
+        },
+        {
+          "desde": 1000,
+          "unitario": 150.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 140.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 130.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 110.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA OPENED AZUL CLARO 2.2 X 1.5 CMS",
+      "costoReferencia": 43.0
+    },
+    {
+      "id": "etiqueta-void-no-transfer-x-5-cms",
+      "nombre": "ETIQUETA VOID NO TRANSFER X 5 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 750.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 600.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 500.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 425.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 400.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 100,
+          "unitario": 1400.0,
+          "logo": true,
+          "medida": "15 - 30 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 800.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 650.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 550.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 450.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 420.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 850.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 700.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 600.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 500.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 480.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 900.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 750.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 650.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 550.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 540.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 100,
+          "unitario": 900.0,
+          "logo": true,
+          "medida": "5 - 15 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 500.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 400.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 350.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 300.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 280.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "medidas": [
+        {
+          "nombre": "5 - 15 CMS"
+        },
+        {
+          "nombre": "15 - 30 CMS"
+        },
+        {
+          "nombre": "5 X 5 CMS",
+          "cmAdicional": 30.0
+        },
+        {
+          "nombre": "10 X 5 CMS",
+          "cmAdicional": 30.0
+        },
+        {
+          "nombre": "15 X 5 CMS",
+          "cmAdicional": 28.0
+        },
+        {
+          "nombre": "20 X 5 CMS",
+          "cmAdicional": 24.0
+        },
+        {
+          "nombre": "25 X 5 CMS",
+          "cmAdicional": 22.0
+        }
+      ]
+    },
+    {
+      "id": "etiqueta-void-transferencia-parcial-x-3-cms",
+      "nombre": "ETIQUETA VOID TRANSFERENCIA PARCIAL X 3 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 650.0,
+          "logo": true,
+          "medida": "10 X 3 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 500.0,
+          "logo": true,
+          "medida": "10 X 3 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 400.0,
+          "logo": true,
+          "medida": "10 X 3 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 325.0,
+          "logo": true,
+          "medida": "10 X 3 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 300.0,
+          "logo": true,
+          "medida": "10 X 3 CMS"
+        },
+        {
+          "desde": 100,
+          "unitario": 1200.0,
+          "logo": true,
+          "medida": "15 - 30 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 700.0,
+          "logo": true,
+          "medida": "15 X 3 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 550.0,
+          "logo": true,
+          "medida": "15 X 3 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 450.0,
+          "logo": true,
+          "medida": "15 X 3 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 350.0,
+          "logo": true,
+          "medida": "15 X 3 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 320.0,
+          "logo": true,
+          "medida": "15 X 3 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 750.0,
+          "logo": true,
+          "medida": "20 X 3 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 600.0,
+          "logo": true,
+          "medida": "20 X 3 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 500.0,
+          "logo": true,
+          "medida": "20 X 3 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 400.0,
+          "logo": true,
+          "medida": "20 X 3 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 380.0,
+          "logo": true,
+          "medida": "20 X 3 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 800.0,
+          "logo": true,
+          "medida": "25 X 3 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 650.0,
+          "logo": true,
+          "medida": "25 X 3 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 550.0,
+          "logo": true,
+          "medida": "25 X 3 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 450.0,
+          "logo": true,
+          "medida": "25 X 3 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 440.0,
+          "logo": true,
+          "medida": "25 X 3 CMS"
+        },
+        {
+          "desde": 100,
+          "unitario": 750.0,
+          "logo": true,
+          "medida": "5 - 15 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 400.0,
+          "logo": true,
+          "medida": "5 X 3 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 300.0,
+          "logo": true,
+          "medida": "5 X 3 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 250.0,
+          "logo": true,
+          "medida": "5 X 3 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 200.0,
+          "logo": true,
+          "medida": "5 X 3 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 180.0,
+          "logo": true,
+          "medida": "5 X 3 CMS"
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "medidas": [
+        {
+          "nombre": "5 - 15 CMS"
+        },
+        {
+          "nombre": "15 - 30 CMS"
+        },
+        {
+          "nombre": "5 X 3 CMS",
+          "cmAdicional": 22.0
+        },
+        {
+          "nombre": "10 X 3 CMS",
+          "cmAdicional": 20.0
+        },
+        {
+          "nombre": "15 X 3 CMS",
+          "cmAdicional": 18.0
+        },
+        {
+          "nombre": "20 X 3 CMS",
+          "cmAdicional": 16.0
+        },
+        {
+          "nombre": "25 X 3 CMS",
+          "cmAdicional": 14.0
+        }
+      ],
+      "notas": [
+        "DISTRIBUIDOR 10% DE DESCUENTO DICE YEIMY"
+      ]
+    },
+    {
+      "id": "etiqueta-void-transferencia-parcial-x-5-cms-y-plata-brillante",
+      "nombre": "ETIQUETA VOID TRANSFERENCIA PARCIAL X 5 CMS Y PLATA BRILLANTE",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 700.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 550.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 450.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 375.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 350.0,
+          "logo": true,
+          "medida": "10 X 5 CMS"
+        },
+        {
+          "desde": 100,
+          "unitario": 1300.0,
+          "logo": true,
+          "medida": "15 - 30 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 750.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 600.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 500.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 400.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 370.0,
+          "logo": true,
+          "medida": "15 X 5 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 800.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 650.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 550.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 450.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 430.0,
+          "logo": true,
+          "medida": "20 X 5 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 850.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 700.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 600.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 500.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 490.0,
+          "logo": true,
+          "medida": "25 X 5 CMS"
+        },
+        {
+          "desde": 100,
+          "unitario": 850.0,
+          "logo": true,
+          "medida": "5 - 15 CMS"
+        },
+        {
+          "desde": 500,
+          "unitario": 450.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 350.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 2000,
+          "unitario": 300.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 5000,
+          "unitario": 250.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        },
+        {
+          "desde": 10000,
+          "unitario": 230.0,
+          "logo": true,
+          "medida": "5 X 5 CMS"
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "medidas": [
+        {
+          "nombre": "5 - 15 CMS"
+        },
+        {
+          "nombre": "15 - 30 CMS"
+        },
+        {
+          "nombre": "5 X 5 CMS",
+          "cmAdicional": 25.0
+        },
+        {
+          "nombre": "10 X 5 CMS",
+          "cmAdicional": 23.0
+        },
+        {
+          "nombre": "15 X 5 CMS",
+          "cmAdicional": 20.0
+        },
+        {
+          "nombre": "20 X 5 CMS",
+          "cmAdicional": 18.0
+        },
+        {
+          "nombre": "25 X 5 CMS",
+          "cmAdicional": 16.0
+        }
+      ]
+    },
+    {
+      "id": "etiqueta-void-transferencia-total-5x3-cms",
+      "nombre": "ETIQUETA VOID TRANSFERENCIA TOTAL 5X3 CMS",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 290.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 1000,
+          "unitario": 190.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 2000,
+          "unitario": 170.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 150.0,
+          "logo": true
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ETIQUETA VOID TRANSFERENCIA TOTAL 5X3 CMS",
+      "costoReferencia": 95.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "holograma-2-2-x-1-5-cms-importada",
+      "nombre": "HOLOGRAMA 2.2 X 1.5 CMS IMPORTADA",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 220.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 170.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 160.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 130.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "HOLOGRAMA 2.2 X 1.5 CMS IMPORTADA",
+      "costoReferencia": 85.0
+    },
+    {
+      "id": "holograma-5-0-x-2-5-cms-dorada",
+      "nombre": "HOLOGRAMA 5.0 X 2.5 CMS DORADA",
+      "categoria": "Etiquetas de seguridad",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 380.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 300.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 270.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 230.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "HOLOGRAMA 5.0 X 2.5 CMS DORADA",
+      "costoReferencia": 150.0
+    },
+    {
+      "id": "cinta-de-seguridad-50x-3-cms",
+      "nombre": "CINTA DE SEGURIDAD 50X 3 CMS",
+      "categoria": "Cintas de seguridad",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 58800.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 5,
+          "unitario": 44700.0,
+          "logo": false
+        },
+        {
+          "desde": 10,
+          "unitario": 37600.0,
+          "logo": false
+        },
+        {
+          "desde": 20,
+          "unitario": 35300.0,
+          "logo": false
+        },
+        {
+          "desde": 50,
+          "unitario": 32900.0,
+          "logo": false
+        },
+        {
+          "desde": 100,
+          "unitario": 30600.0,
+          "logo": false
+        },
+        {
+          "desde": 1,
+          "unitario": 70500.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 5,
+          "unitario": 63500.0,
+          "logo": true
+        },
+        {
+          "desde": 10,
+          "unitario": 53200.0,
+          "logo": true
+        },
+        {
+          "desde": 20,
+          "unitario": 48400.0,
+          "logo": true
+        },
+        {
+          "desde": 50,
+          "unitario": 45100.0,
+          "logo": true
+        },
+        {
+          "desde": 100,
+          "unitario": 41600.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "CINTA DE SEGURIDAD 50 METROS X 3 CMS CON IMPRESIÓN",
+      "costoReferencia": 23500.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "cinta-de-seguridad-50x-5-cms",
+      "nombre": "CINTA DE SEGURIDAD 50X 5 CMS",
+      "categoria": "Cintas de seguridad",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 74000.0,
+          "logo": false,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 5,
+          "unitario": 66600.0,
+          "logo": false
+        },
+        {
+          "desde": 10,
+          "unitario": 59200.0,
+          "logo": false
+        },
+        {
+          "desde": 20,
+          "unitario": 55500.0,
+          "logo": false
+        },
+        {
+          "desde": 50,
+          "unitario": 51800.0,
+          "logo": false
+        },
+        {
+          "desde": 100,
+          "unitario": 48100.0,
+          "logo": false
+        },
+        {
+          "desde": 1,
+          "unitario": 96500.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 5,
+          "unitario": 87000.0,
+          "logo": true
+        },
+        {
+          "desde": 10,
+          "unitario": 74000.0,
+          "logo": true
+        },
+        {
+          "desde": 20,
+          "unitario": 69400.0,
+          "logo": true
+        },
+        {
+          "desde": 50,
+          "unitario": 62600.0,
+          "logo": true
+        },
+        {
+          "desde": 100,
+          "unitario": 59100.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "proveedor": "CINTA DE SEGURIDAD 50 METROS X 5 CMS CON IMPRESIÓN",
+      "costoReferencia": 37000.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    },
+    {
+      "id": "bolsa-courier-25-x-19-cms",
+      "nombre": "BOLSA COURIER 25 X 19 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 690.0
+        },
+        {
+          "desde": 500,
+          "unitario": 380.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 300.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 280.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 270.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 25 X 19 CMS",
+      "costoReferencia": 202.0
+    },
+    {
+      "id": "bolsa-courier-28-x-23-cms",
+      "nombre": "BOLSA COURIER 28 X 23 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 990.0
+        },
+        {
+          "desde": 500,
+          "unitario": 520.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 430.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 390.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 370.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 28 X 23 CMS",
+      "costoReferencia": 277.5
+    },
+    {
+      "id": "bolsa-courier-33-x-25-cms",
+      "nombre": "BOLSA COURIER 33 X 25 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1100.0
+        },
+        {
+          "desde": 500,
+          "unitario": 570.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 470.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 440.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 410.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 33 X 25 CMS",
+      "costoReferencia": 308.0
+    },
+    {
+      "id": "bolsa-courier-35-x-33-cms",
+      "nombre": "BOLSA COURIER 35 X 33 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1410.0
+        },
+        {
+          "desde": 500,
+          "unitario": 780.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 710.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 660.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 610.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 35 X 33 CMS",
+      "costoReferencia": 467.6
+    },
+    {
+      "id": "bolsa-courier-39-x-28-cms",
+      "nombre": "BOLSA COURIER 39 X 28 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1140.0
+        },
+        {
+          "desde": 500,
+          "unitario": 690.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 540.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 520.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 490.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 39 X 28 CMS",
+      "costoReferencia": 365.0
+    },
+    {
+      "id": "bolsa-courier-40-x-28-cms",
+      "nombre": "BOLSA COURIER 40 X 28 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1480.0
+        },
+        {
+          "desde": 500,
+          "unitario": 890.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 850.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 720.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 670.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 40 X 28 CMS",
+      "costoReferencia": 509.5
+    },
+    {
+      "id": "bolsa-courier-45-x-41-cms",
+      "nombre": "BOLSA COURIER 45 X 41 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1770.0
+        },
+        {
+          "desde": 500,
+          "unitario": 1040.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 990.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 940.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 860.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 45 X 41 CMS",
+      "costoReferencia": 655.0
+    },
+    {
+      "id": "bolsa-courier-60-x-48-cms",
+      "nombre": "BOLSA COURIER 60 X 48 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2000.0
+        },
+        {
+          "desde": 500,
+          "unitario": 1600.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 1400.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 1300.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 1300.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 60 X 48 CMS",
+      "costoReferencia": 976.0
+    },
+    {
+      "id": "bolsa-courier-60-x-60-cms",
+      "nombre": "BOLSA COURIER 60 X 60 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2700.0
+        },
+        {
+          "desde": 500,
+          "unitario": 1800.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 1600.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 1440.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 1400.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA COURIER 60 X 60 CMS",
+      "costoReferencia": 1078.0
+    },
+    {
+      "id": "bolsa-de-seguridad-11-x-8-5-cms",
+      "nombre": "BOLSA DE SEGURIDAD 11 X 8,5 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 3000,
+          "unitario": 350.0
+        },
+        {
+          "desde": 6000,
+          "unitario": 340.0
+        },
+        {
+          "desde": 9000,
+          "unitario": 330.0
+        }
+      ],
+      "minimo": 3000,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA DE SEGURIDAD 11 X 8,5 CMS",
+      "costoReferencia": 257.0
+    },
+    {
+      "id": "bolsa-de-seguridad-28-x-17-cms",
+      "nombre": "BOLSA DE SEGURIDAD 28 X 17 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 990.0
+        },
+        {
+          "desde": 500,
+          "unitario": 560.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 500.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 460.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 430.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA DE SEGURIDAD 28 X 17 CMS",
+      "costoReferencia": 328.5
+    },
+    {
+      "id": "bolsa-de-seguridad-34-x-25-cms",
+      "nombre": "BOLSA DE SEGURIDAD 34 X 25 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1660.0
+        },
+        {
+          "desde": 500,
+          "unitario": 1030.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 900.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 870.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 840.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA DE SEGURIDAD 34 X 25 CMS",
+      "costoReferencia": 642.0
+    },
+    {
+      "id": "bolsa-de-seguridad-38-x-28-cms",
+      "nombre": "BOLSA DE SEGURIDAD 38 X 28 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 1760.0
+        },
+        {
+          "desde": 500,
+          "unitario": 1200.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 1000.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 1000.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 900.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA DE SEGURIDAD 38 X 28 CMS",
+      "costoReferencia": 689.0
+    },
+    {
+      "id": "bolsa-de-seguridad-52-x-40-cms",
+      "nombre": "BOLSA DE SEGURIDAD 52 X 40 CMS",
+      "categoria": "Bolsas y sobres de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 2700.0
+        },
+        {
+          "desde": 500,
+          "unitario": 2400.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 2200.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 2100.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 2000.0
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BOLSA DE SEGURIDAD 52 X 40 CMS",
+      "costoReferencia": 1542.0
+    },
+    {
+      "id": "tula-de-seguridad-30-x-40-cms-azul",
+      "nombre": "TULA DE SEGURIDAD 30 X 40 CMS AZUL",
+      "categoria": "Tulas de seguridad",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 76000.0,
+          "nota": "pendiente subir a la pagina"
+        },
+        {
+          "desde": 3,
+          "unitario": 66500.0
+        },
+        {
+          "desde": 5,
+          "unitario": 57000.0
+        },
+        {
+          "desde": 10,
+          "unitario": 47500.0
+        },
+        {
+          "desde": 20,
+          "unitario": 38000.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "TULA DE SEGURIDAD 30 X 40 CMS AZUL",
+      "costoReferencia": 19000.0,
+      "notas": [
+        "pendiente subir a la pagina"
+      ]
+    },
+    {
+      "id": "batex-max-inflator",
+      "nombre": "BATEX MAX INFLATOR",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 5681100.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "BATEX MAX INFLATOR",
+      "costoReferencia": 4370058.0
+    },
+    {
+      "id": "bolsa-inflable-eco-striker-120-x-85-cms",
+      "nombre": "BOLSA INFLABLE ECO STRIKER 120 X 85 CMS",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 33800.0,
+          "nota": "MENOS DE 10"
+        },
+        {
+          "desde": 15,
+          "unitario": 30700.0,
+          "nota": "DE 10 A 15"
+        },
+        {
+          "desde": 50,
+          "unitario": 27500.0
+        },
+        {
+          "desde": 200,
+          "unitario": 26900.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 50",
+      "proveedor": "BOLSA INFLABLE ECO STRIKER 120 X 85 CMS",
+      "costoReferencia": 21118.0,
+      "notas": [
+        "MENOS DE 10",
+        "DE 10 A 15"
+      ]
+    },
+    {
+      "id": "bolsa-inflable-eco-striker-185-x-85-cms",
+      "nombre": "BOLSA INFLABLE ECO STRIKER 185 X 85 CMS",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 42200.0,
+          "nota": "MENOS DE 10"
+        },
+        {
+          "desde": 10,
+          "unitario": 38200.0,
+          "nota": "DE 10 A 30"
+        },
+        {
+          "desde": 40,
+          "unitario": 34300.0
+        },
+        {
+          "desde": 200,
+          "unitario": 33500.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 40",
+      "proveedor": "BOLSA INFLABLE ECO STRIKER 185 X 85 CMS",
+      "costoReferencia": 26315.0,
+      "notas": [
+        "MENOS DE 10",
+        "DE 10 A 30"
+      ]
+    },
+    {
+      "id": "bolsa-inflable-flex-eco-120-x-85-cms",
+      "nombre": "BOLSA INFLABLE FLEX ECO 120 X 85 CMS",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 39100.0,
+          "nota": "MENOS DE 10"
+        },
+        {
+          "desde": 10,
+          "unitario": 35400.0,
+          "nota": "DE 10 A 30"
+        },
+        {
+          "desde": 40,
+          "unitario": 31800.0
+        },
+        {
+          "desde": 200,
+          "unitario": 31000.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 40",
+      "proveedor": "BOLSA INFLABLE FLEX ECO 120 X 85 CMS",
+      "costoReferencia": 24385.0,
+      "notas": [
+        "MENOS DE 10",
+        "DE 10 A 30"
+      ]
+    },
+    {
+      "id": "bolsa-inflable-flex-eco-185-x-85-cms",
+      "nombre": "BOLSA INFLABLE FLEX ECO 185 X 85 CMS",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 47300.0,
+          "nota": "MENOS DE 10"
+        },
+        {
+          "desde": 10,
+          "unitario": 42900.0,
+          "nota": "DE 10 A 30"
+        },
+        {
+          "desde": 30,
+          "unitario": 38400.0
+        },
+        {
+          "desde": 180,
+          "unitario": 37600.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 30",
+      "proveedor": "BOLSA INFLABLE FLEX ECO 185 X 85 CMS",
+      "costoReferencia": 29530.0,
+      "notas": [
+        "MENOS DE 10",
+        "DE 10 A 30"
+      ]
+    },
+    {
+      "id": "bolsa-inflable-flex-eco-220-x-100-cms",
+      "nombre": "BOLSA INFLABLE FLEX ECO 220 X 100 CMS",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 10,
+          "unitario": 61400.0
+        },
+        {
+          "desde": 25,
+          "unitario": 49900.0
+        },
+        {
+          "desde": 50,
+          "unitario": 49200.0
+        },
+        {
+          "desde": 100,
+          "unitario": 48800.0
+        }
+      ],
+      "minimo": 10,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 25",
+      "proveedor": "BOLSA INFLABLE FLEX ECO 220 X 100 CMS",
+      "costoReferencia": 38365.0
+    },
+    {
+      "id": "bolsa-inflable-re-use-100-x-185-cms",
+      "nombre": "BOLSA INFLABLE RE-USE 100 X 185 CMS",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 66200.0,
+          "nota": "MENOS DE 10"
+        },
+        {
+          "desde": 10,
+          "unitario": 60000.0,
+          "nota": "DE 10 A 19"
+        },
+        {
+          "desde": 20,
+          "unitario": 53800.0
+        },
+        {
+          "desde": 100,
+          "unitario": 52600.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 20",
+      "proveedor": "BOLSA INFLABLE RE-USE 100 X 185 CMS",
+      "costoReferencia": 41352.0,
+      "notas": [
+        "MENOS DE 10",
+        "DE 10 A 19"
+      ]
+    },
+    {
+      "id": "bolsa-inflable-re-use-120-x-85-cms",
+      "nombre": "BOLSA INFLABLE RE-USE 120 X 85 CMS",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 48700.0,
+          "nota": "MENOS DE 10"
+        },
+        {
+          "desde": 10,
+          "unitario": 44100.0,
+          "nota": "DE 10 A 30"
+        },
+        {
+          "desde": 30,
+          "unitario": 39600.0
+        },
+        {
+          "desde": 150,
+          "unitario": 38700.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 30",
+      "proveedor": "BOLSA INFLABLE RE-USE 120 X 85 CMS",
+      "costoReferencia": 30405.0,
+      "notas": [
+        "MENOS DE 10",
+        "DE 10 A 30"
+      ]
+    },
+    {
+      "id": "infladora-quick-bolsa-re-use",
+      "nombre": "INFLADORA QUICK (BOLSA RE-USE)",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 260900.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "INFLADORA QUICK",
+      "costoReferencia": 200676.0
+    },
+    {
+      "id": "infladora-striker-bolsa-eco-striker",
+      "nombre": "INFLADORA STRIKER (BOLSA ECO STRIKER)",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 273100.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "INFLADORA STRIKER",
+      "costoReferencia": 210074.0
+    },
+    {
+      "id": "pistola-bates-flex-bolsa-flex-eco",
+      "nombre": "PISTOLA BATES FLEX (BOLSA FLEX ECO)",
+      "categoria": "Air bags e infladores",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 253000.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "PISTOLA BATEX FLEX",
+      "costoReferencia": 194595.0
+    },
+    {
+      "id": "caja-de-seguridad-60-x-40-x-32",
+      "nombre": "CAJA DE SEGURIDAD 60 X 40 X 32",
+      "categoria": "Cajas y contenedores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 72600.0
+        },
+        {
+          "desde": 10,
+          "unitario": 67600.0,
+          "nota": "40*28*20 cms NUEVA MEDIDA"
+        },
+        {
+          "desde": 20,
+          "unitario": 65100.0
+        },
+        {
+          "desde": 50,
+          "unitario": 62600.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "CAJA DE SEGURIDAD MP-CS6032",
+      "costoReferencia": 50023.0,
+      "notas": [
+        "40*28*20 cms NUEVA MEDIDA"
+      ]
+    },
+    {
+      "id": "caja-de-seguridad-60-x-40-x-40",
+      "nombre": "CAJA DE SEGURIDAD 60 X 40 X 40",
+      "categoria": "Cajas y contenedores",
+      "escalones": [
+        {
+          "desde": 5,
+          "unitario": 81700.0,
+          "nota": "peso 3,5 kilos y aumenta 10 cms una entre otra"
+        },
+        {
+          "desde": 10,
+          "unitario": 76000.0
+        },
+        {
+          "desde": 20,
+          "unitario": 73200.0
+        },
+        {
+          "desde": 50,
+          "unitario": 70400.0
+        }
+      ],
+      "minimo": 5,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "CAJA DE SEGURIDAD MP-CS6040",
+      "costoReferencia": 56287.0,
+      "notas": [
+        "peso 3,5 kilos y aumenta 10 cms una entre otra"
+      ]
+    },
+    {
+      "id": "absorbente-dry-bag-hook-x-2000-gramo",
+      "nombre": "ABSORBENTE DRY BAG HOOK x 2000 gramo",
+      "categoria": "Control de humedad",
+      "escalones": [
+        {
+          "desde": 8,
+          "unitario": 35200.0,
+          "nota": "para trasitos hasta de mas de 90 dias"
+        },
+        {
+          "desde": 16,
+          "unitario": 34700.0
+        },
+        {
+          "desde": 40,
+          "unitario": 33900.0
+        },
+        {
+          "desde": 80,
+          "unitario": 32800.0
+        }
+      ],
+      "minimo": 8,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 8",
+      "proveedor": "ABSORBENTE DRY BAG HOOK x 2000 gramo",
+      "costoReferencia": 25135.0,
+      "notas": [
+        "para trasitos hasta de mas de 90 dias"
+      ]
+    },
+    {
+      "id": "absorbente-gk-gel-750-gramos",
+      "nombre": "ABSORBENTE GK GEL 750 gramos",
+      "categoria": "Control de humedad",
+      "escalones": [
+        {
+          "desde": 12,
+          "unitario": 31500.0,
+          "nota": "pendiente subir a la pagina"
+        },
+        {
+          "desde": 24,
+          "unitario": 30800.0
+        },
+        {
+          "desde": 60,
+          "unitario": 29800.0
+        },
+        {
+          "desde": 120,
+          "unitario": 28800.0
+        }
+      ],
+      "minimo": 12,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Caja x 12",
+      "proveedor": "ABSORBENTE GK GEL 750 gramos",
+      "costoReferencia": 22120.0,
+      "notas": [
+        "pendiente subir a la pagina"
+      ]
+    },
+    {
+      "id": "amarre-de-identificacion",
+      "nombre": "AMARRE DE IDENTIFICACION",
+      "categoria": "Identificación",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 97200.0,
+          "nota": "MENOS DE 10"
+        },
+        {
+          "desde": 5,
+          "unitario": 48600.0,
+          "nota": "DE 10 A 30"
+        },
+        {
+          "desde": 20,
+          "unitario": 38850.0
+        },
+        {
+          "desde": 50,
+          "unitario": 36000.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "empaque": "Paquete x 1000",
+      "proveedor": "SUJETADOR ESPINA DE PESCADO 5\"",
+      "costoReferencia": 19425.0,
+      "notas": [
+        "MENOS DE 10",
+        "DE 10 A 30"
+      ]
+    },
+    {
+      "id": "correa-de-identificacion",
+      "nombre": "CORREA DE IDENTIFICACION",
+      "categoria": "Identificación",
+      "escalones": [
+        {
+          "desde": 1000,
+          "unitario": 330.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 280.0,
+          "logo": true
+        },
+        {
+          "desde": 5000,
+          "unitario": 260.0,
+          "logo": true
+        },
+        {
+          "desde": 10000,
+          "unitario": 250.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1000,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "CORREA DE IDENTIFICACION",
+      "costoReferencia": 185.0
+    },
+    {
+      "id": "kit-de-seguridad",
+      "nombre": "KIT DE SEGURIDAD",
+      "categoria": "Kits de seguridad",
+      "escalones": [
+        {
+          "desde": 100,
+          "unitario": 8600.0,
+          "logo": false
+        },
+        {
+          "desde": 500,
+          "unitario": 6600.0,
+          "logo": true,
+          "nota": "LAS BOLSAS SON GENERICAS"
+        },
+        {
+          "desde": 1000,
+          "unitario": 6000.0,
+          "logo": true
+        },
+        {
+          "desde": 2000,
+          "unitario": 5800.0,
+          "logo": true
+        }
+      ],
+      "minimo": 100,
+      "admiteLogo": true,
+      "admiteSinLogo": true,
+      "notas": [
+        "LAS BOLSAS SON GENERICAS"
+      ]
+    },
+    {
+      "id": "pines-de-seguridad-caja-x-5000",
+      "nombre": "PINES DE SEGURIDAD CAJA X 5000",
+      "categoria": "Accesorios",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 849800.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "PINES DE SEGURIDAD CAJA X 5000",
+      "costoReferencia": 641720.0
+    },
+    {
+      "id": "protector-de-guia",
+      "nombre": "PROTECTOR DE GUIA",
+      "categoria": "Accesorios",
+      "escalones": [
+        {
+          "desde": 500,
+          "unitario": 510.0
+        },
+        {
+          "desde": 1000,
+          "unitario": 430.0
+        },
+        {
+          "desde": 2000,
+          "unitario": 400.0
+        },
+        {
+          "desde": 5000,
+          "unitario": 340.0
+        }
+      ],
+      "minimo": 500,
+      "admiteLogo": false,
+      "admiteSinLogo": true,
+      "proveedor": "PROTECTOR DE GUIA",
+      "costoReferencia": 259.0
+    },
+    {
+      "id": "clise-para-marcacion-de-logo",
+      "nombre": "CLISÉ PARA MARCACIÓN DE LOGO",
+      "categoria": "Servicios de personalización",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 55000.0
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": false,
+      "admiteSinLogo": true
+    },
+    {
+      "id": "rollo-void-rojo-troquelada-15-x-5-cms",
+      "nombre": "ROLLO VOID ROJO TROQUELADA 15 X 5 CMS",
+      "categoria": "Servicios de personalización",
+      "escalones": [
+        {
+          "desde": 1,
+          "unitario": 150000.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 5,
+          "unitario": 125000.0,
+          "logo": true,
+          "nota": "NO INCLUYE FLETE"
+        },
+        {
+          "desde": 10,
+          "unitario": 100000.0,
+          "logo": true
+        },
+        {
+          "desde": 20,
+          "unitario": 91000.0,
+          "logo": true
+        }
+      ],
+      "minimo": 1,
+      "admiteLogo": true,
+      "admiteSinLogo": false,
+      "proveedor": "ROLLO VOID ROJO TROQUELADA 15 X 5 CMS",
+      "costoReferencia": 70000.0,
+      "notas": [
+        "NO INCLUYE FLETE"
+      ]
+    }
+  ],
+  "satelitales": {
+    "equipos": [
+      {
+        "modelo": "JT701D",
+        "tiers": [
+          {
+            "desde": 1,
+            "etiqueta": "1 equipo",
+            "valor": 2229180.0
+          },
+          {
+            "desde": 2,
+            "etiqueta": "2 a 9 equipos",
+            "valor": 2057460.0
+          },
+          {
+            "desde": 10,
+            "etiqueta": "10 equipos o más",
+            "valor": 1639820.0
+          }
+        ]
+      },
+      {
+        "modelo": "JT709T",
+        "tiers": [
+          {
+            "desde": 1,
+            "etiqueta": "1 equipo",
+            "valor": 1887860.0
+          },
+          {
+            "desde": 2,
+            "etiqueta": "2 a 9 equipos",
+            "valor": 1742640.0
+          },
+          {
+            "desde": 10,
+            "etiqueta": "10 equipos o más",
+            "valor": 1297440.0
+          }
+        ]
+      }
+    ],
+    "planes": [
+      {
+        "nombre": "SERVICIO PLATAFORMA X 6 MESE X EQUIPO",
+        "tiers": [
+          {
+            "desde": 1,
+            "etiqueta": "1 equipo",
+            "valor": 314500.0
+          },
+          {
+            "desde": 2,
+            "etiqueta": "2 a 9 equipos",
+            "valor": 294256.0
+          },
+          {
+            "desde": 10,
+            "etiqueta": "10 equipos o más",
+            "valor": 273904.0
+          }
+        ]
+      },
+      {
+        "nombre": "SERVICIO PLATAFORMA X 12 MESE X EQUIPO",
+        "tiers": [
+          {
+            "desde": 1,
+            "etiqueta": "1 equipo",
+            "valor": 588400.0
+          },
+          {
+            "desde": 2,
+            "etiqueta": "2 a 9 equipos",
+            "valor": 568160.0
+          },
+          {
+            "desde": 10,
+            "etiqueta": "10 equipos o más",
+            "valor": 527562.0
+          }
+        ]
+      }
+    ],
+    "alquiler": [
+      {
+        "periodo": "MENSUAL",
+        "valor": 249630.0
+      },
+      {
+        "periodo": "QUINCENAL",
+        "valor": 187200.0
+      },
+      {
+        "periodo": "SEMANAL",
+        "valor": 112400.0
+      }
+    ]
+  },
+  "incidencias": [
+    {
+      "tipo": "subtotal_inconsistente",
+      "detalle": "PRECINTO DOBLE DENTADO 38 CMS @3000: Excel dice 840000, unitario×cantidad da 960000",
+      "producto": "precinto-doble-dentado-38-cms"
+    },
+    {
+      "tipo": "subtotal_inconsistente",
+      "detalle": "PRECINTO DOBLE DENTADO 38 CMS @5000: Excel dice 1300000, unitario×cantidad da 1450000",
+      "producto": "precinto-doble-dentado-38-cms"
+    },
+    {
+      "tipo": "subtotal_inconsistente",
+      "detalle": "PRECINTO DOBLE DENTADO 38 CMS @10000: Excel dice 2300000, unitario×cantidad da 2600000",
+      "producto": "precinto-doble-dentado-38-cms"
+    },
+    {
+      "tipo": "escalon_duplicado",
+      "detalle": "PRECINTO CORREA 03 DOBLE CIERRE 35 CMS @2000 con logo: 320 y 300; se usa 300, que es el de la fila de más abajo",
+      "producto": "precinto-correa-03-doble-cierre-35-cms"
+    },
+    {
+      "tipo": "precio_no_monotono",
+      "detalle": "PRECINTO BOTELLA ONE SEAL: 300 uds a 5800 pero 500 uds a 6000",
+      "producto": "precinto-botella-one-seal"
+    },
+    {
+      "tipo": "producto_sin_precio",
+      "detalle": "DE LOS SUJETADORES LOS 1 PAQUETE SON MIL UDS",
+      "producto": "de-los-sujetadores-los-1-paquete-son-mil-uds"
+    }
+  ]
+}
