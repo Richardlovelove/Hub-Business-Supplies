@@ -108,6 +108,12 @@ export function DatosOferta({
       <div className="grid gap-3 sm:grid-cols-3">
         <CampoTexto
           etiqueta="Número"
+          // Vacío hasta emitir: el consecutivo lo lleva el servidor. Se deja
+          // editable porque hay un caso real que lo necesita —pasar al
+          // historial una cotización vieja del Excel, con su número de
+          // entonces— y en ese caso se respeta el que se escriba.
+          placeholder="Se asigna al emitir"
+          nota={cotizacion.numero ? undefined : 'El servidor lo asigna al emitir la cotización.'}
           value={cotizacion.numero}
           onChange={(e) => despachar({ tipo: 'editarCabecera', cambios: { numero: e.currentTarget.value } })}
         />

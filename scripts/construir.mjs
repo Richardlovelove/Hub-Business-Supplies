@@ -1,0 +1,38 @@
+/**
+ * Arma `publico/`, que es lo que Cloudflare sirve.
+ *
+ *   publico/index.html      la portada del hub, copiada tal cual
+ *   publico/assets/         su logo
+ *   publico/cotizador/      el cotizador ya construido
+ *
+ * La portada no se construye: es un `index.html` con los estilos dentro y sin
+ * dependencias, y esa propiedad —abrirla con doble clic y verla igual que
+ * publicada— vale más que meterla en el empaquetador para no ganar nada.
+ */
+
+import { execFileSync } from 'node:child_process';
+import { cp, mkdir, rm } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const raiz = dirname(dirname(fileURLToPath(import.meta.url)));
+const destino = join(raiz, 'publico');
+
+await rm(destino, { recursive: true, force: true });
+await mkdir(destino, { recursive: true });
+
+// El cotizador primero: si falla la comprobación de tipos o una prueba, se
+// para aquí y `publico/` queda vacío en vez de a medias.
+console.log('· Construyendo el cotizador…');
+execFileSync(
+  'npm',
+  ['--prefix', 'cotizador', 'run', 'build', '--', '--outDir', '../publico/cotizador', '--emptyOutDir'],
+  { cwd: raiz, stdio: 'inherit' },
+);
+
+console.log('· Copiando la portada…');
+for (const archivo of ['index.html', 'assets']) {
+  await cp(join(raiz, archivo), join(destino, archivo), { recursive: true });
+}
+
+console.log(`Listo. \`publico/\` preparado para \`wrangler deploy\`.`);

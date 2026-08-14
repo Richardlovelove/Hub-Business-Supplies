@@ -16,9 +16,7 @@ import {
   descartarBorrador,
   guardarBorrador,
   lineaDesdeProducto,
-  numeroPrevisto,
   recuperarBorrador,
-  siguienteNumero,
 } from '../dominio/cotizacion';
 import { totalesDeCotizacion } from '../dominio/precios';
 import { revisarCotizacion } from '../dominio/revision';
@@ -37,7 +35,8 @@ type Accion =
       cambios: Partial<Pick<Cotizacion, 'asesor' | 'fecha' | 'numero' | 'iva'>>;
     }
   | { tipo: 'reiniciar' }
-  | { tipo: 'confirmarNumero' }
+  | { tipo: 'numeroAsignado'; numero: string }
+  | { tipo: 'cargar'; cotizacion: Cotizacion }
   | { tipo: 'actualizarPrecios' };
 
 function reducir(estado: Cotizacion, accion: Accion): Cotizacion {
@@ -94,15 +93,18 @@ function reducir(estado: Cotizacion, accion: Accion): Cotizacion {
     case 'editarCabecera':
       return { ...estado, ...accion.cambios };
 
-    case 'confirmarNumero': {
-      // El consecutivo se gasta al emitir el documento, no al abrir la
-      // pantalla: así una cotización que nadie llegó a enviar no deja un
-      // hueco en la numeración. `siguienteNumero` devuelve el mismo texto que
-      // ya se ve —`numeroPrevisto` no consume— así que el número no cambia
-      // delante del asesor; lo que avanza es el contador de la siguiente.
-      if (estado.numero !== numeroPrevisto(estado.fecha)) return estado; // Numerada a mano.
-      return { ...estado, numero: siguienteNumero(estado.fecha) };
-    }
+    case 'numeroAsignado':
+      // El consecutivo se gasta al emitir, no al abrir la pantalla: una
+      // cotización que nadie llegó a enviar no deja hueco en la numeración.
+      // El número viene del servidor, que es el único que puede saberlo
+      // cuando hay más de una persona cotizando.
+      return { ...estado, numero: accion.numero };
+
+    case 'cargar':
+      // Una cotización traída del historial. Entra tal cual quedó emitida
+      // —con su número, su IVA y sus precios— y a partir de ahí se edita como
+      // cualquier otra; al volver a emitirla se actualiza la guardada.
+      return accion.cotizacion;
 
     case 'actualizarPrecios': {
       // Vuelve a pedirle el precio al listado vigente en todas las líneas que

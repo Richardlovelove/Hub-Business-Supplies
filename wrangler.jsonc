@@ -1,0 +1,42 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bys-hub",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-08-01",
+
+  // Sin subdominio `workers.dev`. Es deliberado: esa dirección no pasa por
+  // Cloudflare Access, así que dejarla encendida abriría una puerta lateral al
+  // historial. La única entrada es el dominio con Access delante.
+  "workers_dev": false,
+
+  // La portada del hub y el cotizador ya construido. Cloudflare los sirve
+  // directamente desde el borde; el Worker sólo se ejecuta para `/api/*`.
+  "assets": {
+    "directory": "./publico",
+    "binding": "ASSETS"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "BASE",
+      "database_name": "bys-cotizaciones",
+      // Lo imprime `wrangler d1 create bys-cotizaciones`. Ver el README.
+      "database_id": "PENDIENTE",
+      "migrations_dir": "migraciones"
+    }
+  ],
+
+  "vars": {
+    // Los dos datos de la aplicación en Cloudflare Access. Se rellenan una vez
+    // creada; hasta entonces el Worker rechaza todo con «sin acceso», que es
+    // lo correcto: sin Access configurado no hay forma de saber quién entra.
+    // `ACCESO_DOMINIO` es el dominio del equipo (`algo.cloudflareaccess.com`)
+    // y `ACCESO_AUD`, la etiqueta «Application Audience (AUD) Tag».
+    "ACCESO_DOMINIO": "",
+    "ACCESO_AUD": ""
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

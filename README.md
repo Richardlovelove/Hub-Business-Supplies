@@ -1,81 +1,221 @@
 # Hub · B&S Logistics
 
-La página de entrada a las herramientas internas de **Business & Supplies
-Logistics S.A.S.** Un empleado la abre, ve tres botones y va directo a lo que
-necesita: la página web, el cotizador o el CRM.
+Las herramientas internas de **Business & Supplies Logistics S.A.S.** en un
+solo sitio, detrás de una sola puerta. Un empleado entra, se identifica una vez
+y ve lo que necesita.
 
-**https://richardlovelove.github.io/Hub-Business-Supplies/**
-
-Aquí no vive el código de las herramientas — cada una tiene su propio
-repositorio y su propio despliegue. Este repo es solo la portada que las
-enlaza.
+```
+/                 la portada con las tarjetas
+/cotizador/       el cotizador y el historial de cotizaciones
+/api/             el historial por dentro (sólo lo usa el cotizador)
+```
 
 ---
 
-## Qué enlaza hoy
+## Qué hay aquí y qué no
 
-| Herramienta       | Qué es                                                      | A dónde va                                               |
-| ----------------- | ----------------------------------------------------------- | -------------------------------------------------------- |
-| **Página web**    | El sitio público: catálogo, servicios y contacto             | `byslogistics-web.netlify.app`                            |
-| **Cotizador**     | Arma la cotización y genera el PDF y el mensaje de WhatsApp  | `richardlovelove.github.io/Cotizador-Business-Supplies/`  |
-| **CRM · Chatbot** | Panel del bot multicanal: conversaciones, leads y conexiones | `bys-logistics.abrinay1997.workers.dev/admin/overview`    |
+| Herramienta       | Dónde vive                       |
+| ----------------- | -------------------------------- |
+| **Portada**       | Aquí: `index.html`               |
+| **Cotizador**     | Aquí: `cotizador/`               |
+| **Historial**     | Aquí: `worker/` + D1             |
+| **Página web**    | Fuera: `byslogistics-web`        |
+| **CRM · Chatbot** | Fuera: su propio Worker          |
 
-La página web todavía vive en la dirección de Netlify. El día que el dominio
-propio (`byslogistics.com.co`) quede publicado, hay que cambiar los dos
-enlaces que apuntan ahí: el de la tarjeta y el del pie de página.
+El cotizador **se mudó a este repositorio** con toda su historia de commits: el
+repo `Cotizador-Business-Supplies` ya no recibe cambios. Convendría archivarlo
+(Settings → Archive this repository), no borrarlo: archivar lo deja en sólo
+lectura conservando sus PRs y su historia, y borrarlo se lleva todo eso por
+delante sin ganar nada.
+
+---
+
+## El historial de cotizaciones
+
+Hasta ahora una cotización emitida no dejaba rastro en ningún sitio: salía el
+PDF, se mandaba por WhatsApp y ahí se acababa. Ahora cada cotización emitida
+queda guardada, y las dos socias ven la misma lista desde donde sea.
+
+De cada una se guarda **el documento JSON completo**, que es la fuente de
+verdad: al reabrirla se regenera un PDF idéntico al que recibió el cliente,
+aunque el listado de precios haya cambiado diez veces desde entonces. Las
+columnas del listado —cliente, total, unidades— las calcula el servidor a
+partir de ese mismo documento, con las mismas funciones que usa la pantalla,
+para que el total del historial no pueda discrepar del total del PDF.
+
+En la pantalla del historial se puede buscar por número, empresa, NIT o
+contacto, filtrar por fechas y por estado, volver a bajar el PDF, reabrir una
+cotización para hacerle una versión nueva, y marcar en qué acabó: **emitida**,
+**aceptada** o **perdida**. Ese último dato es el que convierte el historial en
+algo que se mira: cuánto se cotizó el mes pasado y cuánto de eso entró.
+
+### El consecutivo dejó de ser local
+
+`COT-2026-0001` lo llevaba el navegador de cada asesor. Con una sola persona
+funcionaba; con dos, cada navegador tenía su propio contador y dos clientes
+distintos podían recibir la misma «COT-2026-0007» sin que nadie se enterara
+hasta cruzar los dos PDF. Ahora el número lo da la base de datos, en una sola
+sentencia SQL que dos personas emitiendo a la vez no pueden desordenar.
+
+La contrapartida es que el número **ya no se puede saber por adelantado**:
+depende de quién emita primero. Por eso la pantalla dice «se asigna al emitir»
+en vez de enseñar un número que podría cambiar delante de quien lo está
+leyendo.
+
+### Sin conexión no se emite
+
+Armar la cotización sigue funcionando entero en el navegador —el catálogo, los
+precios, la vista previa del PDF— y el borrador se sigue guardando solo. Lo
+único que necesita red es **emitir**, porque el número viene del servidor.
+
+Es deliberado. La alternativa sería dejar que el navegador se invente un número
+provisional, pero entonces el PDF que ya está en manos del cliente diría un
+número y el historial otro. Un envío que espera a que vuelva la red se explica;
+dos cotizaciones distintas con el mismo número, no.
+
+---
+
+## Puesta en marcha
+
+```bash
+npm run instalar     # dependencias del hub y del cotizador
+npm test             # 54 pruebas del cotizador
+npm run build        # deja el sitio entero en publico/
+```
+
+Para trabajar en la pantalla, dos terminales:
+
+```bash
+npm run dev          # el Worker y el historial, en :8787
+npm run pantalla     # el cotizador con recarga en caliente, en :5173
+```
+
+El segundo manda las llamadas de `/api` al primero. Para que el historial
+responda en local hace falta un archivo `.dev.vars` —que no se versiona— con:
+
+```
+MODO=desarrollo
+CORREO_DESARROLLO=usted@byslogistics.com.co
+```
+
+`MODO=desarrollo` salta la comprobación de Cloudflare Access, que en local no
+existe. **Nunca en producción**: sin esa comprobación, el historial queda
+abierto a quien dé con la dirección.
+
+---
+
+## Publicar
+
+Falta hacer cuatro cosas a mano, una sola vez. Ninguna se puede automatizar
+desde aquí: todas piden la sesión de Cloudflare.
+
+### 1. Crear la base de datos
+
+```bash
+npx wrangler d1 create bys-cotizaciones
+```
+
+Imprime un `database_id`. Hay que pegarlo en `wrangler.jsonc`, donde ahora dice
+`"PENDIENTE"`.
+
+### 2. Crear las tablas
+
+```bash
+npm run migrar          # las crea en la base de verdad
+npm run migrar:local    # y en la de pruebas, para el `npm run dev`
+```
+
+### 3. Poner la puerta: Cloudflare Access
+
+En el panel de Cloudflare, **Zero Trust → Access → Applications → Add an
+application → Self-hosted**:
+
+- **Dominio**: el del hub (p. ej. `herramientas.byslogistics.com.co`).
+- **Política**: `Allow`, con la regla *Emails* y los correos de quien deba
+  entrar — las dos socias y los asesores. Cualquier correo que no esté en esa
+  lista no pasa de la primera pantalla.
+
+Cuando quede creada, la aplicación muestra su **Application Audience (AUD)
+Tag**. Ese valor y el dominio del equipo (`algo.cloudflareaccess.com`) van en
+`wrangler.jsonc`, en `ACCESO_DOMINIO` y `ACCESO_AUD`. Hasta que estén puestos,
+el historial rechaza todo con «sin acceso», que es lo correcto: sin Access
+configurado no hay forma de saber quién está entrando.
+
+Access protege **el sitio entero**, no sólo el historial: la portada, el
+cotizador y las herramientas que se añadan mañana. Es la razón principal por la
+que el hub está en Cloudflare y no en otro sitio — el acceso se resuelve una
+vez, en la puerta, y no una vez por herramienta.
+
+> Añadir a alguien al equipo es añadir su correo a esa política. No hay usuarios
+> ni contraseñas que gestionar aquí dentro.
+
+### 4. Desplegar
+
+```bash
+npm run desplegar
+```
+
+Construye `publico/` y lo sube junto con el Worker. El dominio se conecta en
+**Workers & Pages → bys-hub → Settings → Domains & Routes**.
+
+Ojo: `wrangler.jsonc` lleva `workers_dev: false` a propósito. La dirección
+`bys-hub.<cuenta>.workers.dev` no pasa por Access, así que dejarla encendida
+abriría una puerta lateral al historial saltándose la lista de correos.
+
+### Y una vez publicado
+
+El hub estaba en GitHub Pages y el cotizador también. Cuando el dominio de
+Cloudflare responda, hay que **apagar Pages en los dos repositorios** (Settings
+→ Pages → Source: None); sus flujos de publicación ya se quitaron de aquí. Si
+no, quedan dos copias viejas en pie, públicas y sin historial, y alguien acabará
+usando la equivocada.
+
+Apagarlas cierra además una fuga que hoy está abierta: el catálogo que se
+empaqueta con el cotizador lleva **el costo de compra de 109 de los 114
+productos y el nombre del proveedor de 108**, y hoy cualquiera con el enlace de
+GitHub Pages puede leerlos. Detrás de Access esos datos sólo los ve el equipo,
+que es para quien están.
 
 ---
 
 ## Cómo está hecho
 
-Un solo archivo, `index.html`, con los estilos dentro. No hay dependencias, no
-hay `npm install`, no hay paso de construcción. Se abre haciendo doble clic
-sobre el archivo y se ve exactamente igual que publicado.
-
 ```
-index.html      la página entera (marcado + estilos)
-assets/         el logo oficial
-.github/        el flujo que la publica
+index.html        la portada: marcado y estilos en un solo archivo, sin construir
+assets/           el logo
+cotizador/        la aplicación del cotizador (React + Vite)
+worker/           la API del historial y la verificación de Access
+compartido/       el contrato entre los dos: qué viaja por el cable
+migraciones/      el esquema de la base, en SQL
+scripts/          arma `publico/` a partir de la portada y del cotizador
 ```
 
-La paleta son los once azules de la marca (`--brand-50` … `--brand-950`,
-alrededor del `#0060a8` del logo), los mismos que usa la página web. Están
-declarados juntos al principio del `<style>`. La página se adapta sola a modo
-claro y oscuro según la configuración de quien la abre.
+La portada **no se construye**: es un `index.html` con los estilos dentro y sin
+dependencias. Se abre con doble clic y se ve igual que publicada, y añadir una
+herramienta es copiar un `<li>` y cambiarle cuatro cosas (está explicado dentro
+del propio archivo). Meterla en el empaquetador no ganaría nada y costaría esa
+propiedad.
 
----
+El cotizador sí, porque es una aplicación de verdad. `npm run build` lo compila
+en `publico/cotizador/` y copia la portada al lado.
 
-## Agregar una herramienta nueva
+### Cambiar de proveedor sin rehacer nada
 
-En `index.html`, busca el comentario `LAS HERRAMIENTAS`. Debajo hay un `<li>`
-por cada tarjeta. Copia uno entero, pégalo al final de la lista y cambia
-cuatro cosas:
+Todo lo que el cotizador sabe del servidor está en un archivo,
+`cotizador/src/historial/almacen.ts`, detrás de una interfaz. La pantalla llama
+a `almacen.registrar(...)` y no sabe si detrás hay Cloudflare, Supabase o una
+carpeta. Si algún día conviene mudarse, se reescribe ese archivo y el resto de
+la aplicación no se entera.
 
-1. El `href` del enlace — a dónde lleva el botón.
-2. El `<h2>` — el nombre de la herramienta.
-3. El `<p>` — una línea explicando para qué sirve.
-4. El `<svg>` del icono, si quieres otro dibujo.
+### Por qué se verifica la firma del token
 
-La rejilla se reacomoda sola: con cuatro herramientas pasa a dos filas sin que
-haya que tocar nada.
+Access añade a cada petición una cabecera con el correo de quien entró, y
+leerla sería una línea de código. `worker/acceso.ts` no hace eso: comprueba la
+firma criptográfica del token contra las claves públicas del equipo.
 
-Para cambiarle el destino a una herramienta que ya está, basta con su `href`.
-
----
-
-## Publicación
-
-Cada empuje a `main` publica el hub en GitHub Pages a través de
-`.github/workflows/pages.yml`.
-
-**Falta un paso a mano, una sola vez:** en GitHub, **Settings → Pages →
-Source: GitHub Actions**. Hasta que eso esté, el flujo falla con «Get Pages
-site failed». Es el mismo paso que en su día se hizo en el repo del cotizador,
-y no se puede automatizar: encender Pages pide permisos de administración que
-el token de Actions no tiene.
-
-Al ser un sitio estático sin datos ni sesión, la página es pública para quien
-tenga el enlace. Lleva `noindex` para que no aparezca en buscadores, pero eso
-no es una contraseña: lo que protege cada herramienta es su propio acceso —
-el panel del CRM pide su clave, y el cotizador y la web no exponen nada
-sensible.
+La diferencia importa porque esa cabecera es texto que cualquiera puede
+escribir. Si un día el Worker queda alcanzable por una ruta que no pasa por
+Access —un dominio nuevo mal configurado, una prueba, el subdominio de
+`workers.dev`—, leerla a secas convertiría «quién eres» en un campo que rellena
+quien llama. Está probado: una petición con la cabecera falsificada recibe un
+401.

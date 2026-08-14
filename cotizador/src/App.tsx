@@ -1,13 +1,16 @@
 /**
- * Pantalla del cotizador.
+ * Las dos pantallas: armar una cotización y consultar las emitidas.
  *
- * En escritorio son dos columnas a la vez: catálogo a la izquierda,
- * cotización a la derecha. En móvil no caben, y apilarlas obligaba a bajar
- * una pantalla entera de catálogo antes de ver el formulario, así que ahí se
- * alternan con un conmutador y las acciones bajan a una barra fija.
+ * En la de armar, en escritorio son dos columnas a la vez: catálogo a la
+ * izquierda, cotización a la derecha. En móvil no caben, y apilarlas obligaba
+ * a bajar una pantalla entera de catálogo antes de ver el formulario, así que
+ * ahí se alternan con un conmutador y las acciones bajan a una barra fija.
  *
- * Todo ocurre en el navegador y sin servidor. El borrador se guarda solo, así
- * que cerrar la pestaña por accidente no cuesta el trabajo hecho.
+ * Armar la cotización sigue ocurriendo entero en el navegador —el catálogo, los
+ * precios, el PDF— y el borrador se guarda solo, así que cerrar la pestaña por
+ * accidente no cuesta el trabajo hecho. Lo único que necesita servidor es
+ * **emitir**: ahí se pide el número al consecutivo central y el documento queda
+ * en el historial que ven las dos socias.
  */
 
 import { useState } from 'react';
@@ -15,7 +18,9 @@ import { useState } from 'react';
 import { catalogo } from './dominio/catalogo';
 import { pesos } from './dominio/formato';
 import { EMPRESA } from './datos/empresa';
-import type { Producto } from './dominio/tipos';
+import type { Cotizacion, Producto } from './dominio/tipos';
+import { almacen, FalloHistorial } from './historial/almacen';
+import { PantallaHistorial } from './historial/PantallaHistorial';
 import { abrirWhatsapp, copiarMensaje, descargarPdf, verPdf } from './ui/acciones';
 import { PanelCatalogo } from './ui/PanelCatalogo';
 import {
@@ -27,22 +32,53 @@ import {
 import { TablaLineas } from './ui/TablaLineas';
 import { Seccion } from './ui/componentes';
 import { useCotizacion } from './ui/useCotizacion';
+import { useRuta } from './ui/useRuta';
 
 /** Qué panel se ve en móvil. En escritorio se ven los dos y esto se ignora. */
 type Panel = 'catalogo' | 'cotizacion';
 
+/**
+ * El estado de la cotización vive aquí, por encima de las dos pantallas: pasar
+ * al historial y volver no puede costar el trabajo a medio hacer, y reabrir una
+ * cotización guardada tiene que poder dejarla en el formulario.
+ */
 export default function App() {
-  const { cotizacion, despachar, totales, productosEnUso, revision, alertasPorLinea } =
-    useCotizacion();
+  const estado = useCotizacion();
+  const [ruta, ir] = useRuta();
+
+  if (ruta === 'historial') {
+    return (
+      <PantallaHistorial
+        alVolver={() => ir('cotizador')}
+        alReabrir={(guardada) => {
+          estado.despachar({ tipo: 'cargar', cotizacion: guardada });
+          ir('cotizador');
+        }}
+      />
+    );
+  }
+
+  return <Cotizador estado={estado} alHistorial={() => ir('historial')} />;
+}
+
+function Cotizador({
+  estado,
+  alHistorial,
+}: {
+  estado: ReturnType<typeof useCotizacion>;
+  alHistorial: () => void;
+}) {
+  const { cotizacion, despachar, totales, productosEnUso, revision, alertasPorLinea } = estado;
   const [verMargen, setVerMargen] = useState(false);
   const [aviso, setAviso] = useState('');
   const [panel, setPanel] = useState<Panel>('catalogo');
+  const [emitiendo, setEmitiendo] = useState(false);
 
   const vacia = cotizacion.lineas.length === 0;
 
-  const anunciar = (mensaje: string) => {
+  const anunciar = (mensaje: string, milisegundos = 3000) => {
     setAviso(mensaje);
-    setTimeout(() => setAviso(''), 3000);
+    setTimeout(() => setAviso(''), milisegundos);
   };
 
   /**
@@ -55,16 +91,46 @@ export default function App() {
   };
 
   /**
-   * Ejecuta una salida (PDF, WhatsApp, portapapeles) y da por gastado el
-   * consecutivo. La vista previa no cuenta: es para revisar, no para enviar.
+   * Ejecuta una salida (PDF, WhatsApp, portapapeles) dejando constancia.
+   *
+   * Emitir son dos cosas a la vez: el documento que sale hacia el cliente y el
+   * registro de que salió. Primero se guarda —de ahí vuelve el número— y sólo
+   * después se genera el PDF o el mensaje, para que lo que el cliente recibe y
+   * lo que queda en el historial sean el mismo documento con el mismo número.
+   *
+   * La vista previa no pasa por aquí: es para revisar, no para enviar, y no
+   * gasta número ni deja registro.
+   *
+   * **Sin conexión no se emite.** Es la contrapartida honesta del consecutivo
+   * central: el número depende de quién haya emitido antes, así que este
+   * navegador no puede inventárselo. El borrador sigue guardado y la vista
+   * previa sigue funcionando; lo que espera es el envío.
    */
-  const emitir = async (
-    accion: (c: typeof cotizacion) => Promise<void> | void,
-    consumeNumero = true,
-  ) => {
+  const emitir = async (accion: (c: Cotizacion) => Promise<void> | void) => {
+    if (emitiendo) return;
+    setEmitiendo(true);
+
+    try {
+      const { numero } = await almacen.registrar(cotizacion);
+      if (numero !== cotizacion.numero) despachar({ tipo: 'numeroAsignado', numero });
+      await accion({ ...cotizacion, numero });
+    } catch (error) {
+      console.error(error);
+      anunciar(
+        error instanceof FalloHistorial
+          ? error.mensaje
+          : 'No se pudo generar el documento. Revise la consola.',
+        6000,
+      );
+    } finally {
+      setEmitiendo(false);
+    }
+  };
+
+  /** Salidas que no emiten: no piden número ni tocan el historial. */
+  const soloVer = async (accion: (c: Cotizacion) => Promise<void> | void) => {
     try {
       await accion(cotizacion);
-      if (consumeNumero) despachar({ tipo: 'confirmarNumero' });
     } catch (error) {
       console.error(error);
       anunciar('No se pudo generar el documento. Revise la consola.');
@@ -73,7 +139,7 @@ export default function App() {
 
   const acciones = {
     descargar: () => emitir((c) => descargarPdf(c)),
-    ver: () => emitir((c) => verPdf(c, true), false),
+    ver: () => soloVer((c) => verPdf(c, true)),
     whatsapp: () => emitir(abrirWhatsapp),
     copiar: () =>
       emitir(async (c) =>
@@ -101,8 +167,18 @@ export default function App() {
             <h1 className="truncate text-sm font-bold text-neutral-800">
               Cotizador · {EMPRESA.nombreComercial}
             </h1>
-            <p className="text-xs text-neutral-500">{cotizacion.numero}</p>
+            {/* Sin número hasta emitir. Enseñar uno «previsto» sería mentir:
+                lo asigna el servidor y depende de quién emita primero. */}
+            <p className="text-xs text-neutral-500">
+              {cotizacion.numero || 'El número se asigna al emitir'}
+            </p>
           </div>
+
+          {/* El historial se alcanza desde las dos anchuras: es la mitad de lo
+              que la herramienta hace ahora, no una opción escondida. */}
+          <button type="button" className="boton-secundario" onClick={alHistorial}>
+            Historial
+          </button>
 
           {/* En móvil estas acciones viven en la barra inferior. */}
           <div className="hidden flex-wrap items-center gap-2 lg:flex">
@@ -113,7 +189,7 @@ export default function App() {
               type="button"
               className="boton-secundario"
               onClick={acciones.copiar}
-              disabled={vacia}
+              disabled={vacia || emitiendo}
             >
               Copiar mensaje
             </button>
@@ -121,7 +197,7 @@ export default function App() {
               type="button"
               className="boton-whatsapp"
               onClick={acciones.whatsapp}
-              disabled={vacia}
+              disabled={vacia || emitiendo}
             >
               WhatsApp
             </button>
@@ -137,9 +213,9 @@ export default function App() {
               type="button"
               className="boton-primario"
               onClick={acciones.descargar}
-              disabled={vacia}
+              disabled={vacia || emitiendo}
             >
-              Descargar PDF
+              {emitiendo ? 'Emitiendo…' : 'Descargar PDF'}
             </button>
           </div>
         </div>
@@ -211,7 +287,7 @@ export default function App() {
               type="button"
               className="boton-secundario"
               onClick={acciones.copiar}
-              disabled={vacia}
+              disabled={vacia || emitiendo}
             >
               Copiar mensaje
             </button>
@@ -231,7 +307,7 @@ export default function App() {
 
       <BarraMovil
         total={totales.total}
-        vacia={vacia}
+        vacia={vacia || emitiendo}
         alWhatsapp={acciones.whatsapp}
         alDescargar={acciones.descargar}
       />

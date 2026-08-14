@@ -4,8 +4,14 @@ Arma una cotización desde el listado de precios y produce dos cosas: el **PDF
 formal** con la marca de la empresa y el **mensaje de WhatsApp** que hoy se
 copia y pega a mano desde el Excel.
 
-Funciona entero en el navegador. No hay servidor, no hay base de datos y no
-hace falta conexión una vez cargada la página.
+Armar la cotización ocurre entero en el navegador: el catálogo, los precios y
+el PDF salen de la propia página, sin esperar a nadie. Lo único que necesita
+servidor es **emitir**, porque desde entonces cada cotización emitida queda
+guardada en el historial que ven las dos socias, con su número tomado de un
+consecutivo central.
+
+Esta aplicación vive dentro del [hub de herramientas](../README.md), que es
+donde están el historial, el despliegue y los pasos de puesta en marcha.
 
 <img src="docs/ejemplo-cotizacion.png" alt="Primera página de una cotización generada" width="520">
 
@@ -31,42 +37,22 @@ tres errores que este cotizador elimina:
 
 ## Puesta en marcha
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-```
-
-Para producción:
+Desde la raíz del hub, no desde aquí:
 
 ```bash
-npm run build    # deja el sitio estático en dist/
-npm run preview
+npm run instalar   # dependencias del hub y del cotizador
+npm run dev        # el Worker y el historial, en :8787
+npm run pantalla   # esta aplicación con recarga en caliente, en :5173
 ```
 
-`dist/` usa rutas relativas: se puede subir a cualquier hosting, colgar de un
-subdirectorio de byslogistics.com.co o abrir directamente desde el disco.
+Hacen falta las dos: la pantalla manda las llamadas de `/api` al Worker de al
+lado. Sin él la aplicación abre igual y deja armar cotizaciones, pero al emitir
+avisa de que no hay conexión con el historial.
 
----
-
-## Enlace de previsualización
-
-Cada empuje a `main` o a la rama de trabajo publica el cotizador en GitHub
-Pages:
-
-**https://richardlovelove.github.io/Cotizador-Business-Supplies/**
-
-Para activarlo, una sola vez: **Settings → Pages → Source: GitHub Actions**.
-
-El flujo está en `.github/workflows/pages.yml` y corre las pruebas y la
-comprobación de tipos antes de publicar, así que una versión rota no llega al
-enlace. También se puede lanzar a mano desde la pestaña **Actions**
-(«Publicar cotizador» → *Run workflow*).
-
-> Si el paso «Publicar» falla diciendo que la rama no está permitida, es la
-> protección del entorno `github-pages`, que de fábrica sólo acepta la rama
-> por defecto. Se arregla en **Settings → Environments → github-pages →
-> Deployment branches**, añadiendo la rama; o publicando desde `main` una vez
-> fusionado.
+Para producción se construye el hub entero (`npm run build` en la raíz), que
+deja esta aplicación en `publico/cotizador/`. Las rutas del `dist/` son
+relativas, así que el mismo empaquetado sirve colgado de `/cotizador/` o
+abierto desde el disco.
 
 ---
 
@@ -125,6 +111,7 @@ src/
   dominio/        precios, totales, modelo de la cotización — funciones puras
   pdf/            tokens de marca, primitivas de dibujo, armado del documento
   mensajes/       mensaje de WhatsApp
+  historial/      el trato con el servidor, y la pantalla de consulta
   ui/             pantalla React
 ```
 
@@ -132,7 +119,7 @@ La regla que ordena todo: **`dominio/` no sabe que existe React ni jsPDF**. Se
 puede probar sin navegador, y de hecho así se prueba.
 
 ```bash
-npm test                    # 34 pruebas
+npm test                    # 54 pruebas
 MUESTRA_PDF=1 npm test      # además deja PDFs de ejemplo en muestras/
 ```
 
@@ -178,11 +165,25 @@ comercial hace de cabeza.
 del Excel y la pantalla puede mostrar el margen por línea (casilla «Ver
 margen»), pero ni el PDF ni el mensaje de WhatsApp lo mencionan.
 
-**El consecutivo es local.** `COT-2026-0001` se guarda en el navegador del
-asesor y se gasta al emitir el documento, no al abrir la pantalla. Sirve para
-que dos cotizaciones del mismo día no salgan iguales; no es un registro
-contable. Con varios asesores, el número tendrá que venir de un sistema
-central.
+**El consecutivo viene del servidor.** `COT-2026-0001` lo llevaba el navegador
+de cada asesor, y eso aguantaba mientras cotizara una sola persona: con dos,
+cada navegador tenía su propio contador y dos clientes distintos podían recibir
+la misma «COT-2026-0007». Ahora lo da la base de datos al emitir, y se gasta al
+emitir y no al abrir la pantalla, así que una cotización que nadie llegó a
+enviar no deja hueco en la numeración.
+
+Lo que se pierde a cambio: el número **ya no se puede saber por adelantado**,
+porque depende de quién emita primero. La pantalla dice «se asigna al emitir»
+en lugar de enseñar un número que podría cambiar delante de quien lo lee. El
+campo sigue siendo editable para un caso real —pasar al historial una
+cotización vieja del Excel, con su número de entonces—, y en ese caso se
+respeta el que se escriba.
+
+**Emitir necesita conexión; armar, no.** El catálogo, los precios, el borrador
+y la vista previa del PDF siguen funcionando sin red. Emitir no, porque el
+número lo da el servidor. Dejar que el navegador se inventara uno provisional
+significaría que el PDF que ya tiene el cliente dice un número y el historial
+otro; un envío que espera a que vuelva la red se explica mejor que eso.
 
 **El borrador se guarda solo.** Cerrar la pestaña no cuesta el trabajo hecho.
 

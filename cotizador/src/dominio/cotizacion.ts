@@ -1,9 +1,10 @@
 /**
  * Construcción y persistencia de la cotización en curso.
  *
- * No hay servidor: el borrador vive en `localStorage`, igual que el carrito
- * del sitio público. Cerrar la pestaña por accidente no debe costar una
- * cotización a medio armar.
+ * El borrador vive en `localStorage`, igual que el carrito del sitio público:
+ * cerrar la pestaña por accidente no debe costar una cotización a medio armar.
+ * Lo que sí sale de aquí es el documento emitido, que se guarda en el
+ * historial (`historial/almacen.ts`) para que las dos socias lo vean.
  */
 
 import { PLANTILLA_POR_DEFECTO } from '../datos/condiciones';
@@ -14,7 +15,6 @@ import { sugerirPrecio } from './precios';
 import type { Cliente, Cotizacion, Linea, Producto } from './tipos';
 
 const CLAVE_BORRADOR = 'bys-cotizador:borrador';
-const CLAVE_CONSECUTIVO = 'bys-cotizador:consecutivo';
 
 export const CLIENTE_VACIO: Cliente = {
   empresa: '',
@@ -26,33 +26,23 @@ export const CLIENTE_VACIO: Cliente = {
 };
 
 /**
- * Número de cotización con formato `COT-2026-0001`.
+ * Una cotización nueva nace **sin número**, y eso es a propósito.
  *
- * El consecutivo es local al navegador del asesor: sirve para que dos
- * cotizaciones del mismo día no salgan con el mismo número, no como registro
- * contable. Si un día hay varios asesores, el número tendrá que venir de un
- * sistema central.
+ * El consecutivo lo lleva ahora el servidor, no el navegador. El contador
+ * local funcionaba con un solo asesor y se rompía con dos: cada navegador
+ * tenía el suyo, así que dos personas cotizando el mismo día le entregaban
+ * «COT-2026-0007» a dos clientes distintos, y nadie se enteraba hasta que
+ * alguien cruzaba los dos PDF.
+ *
+ * Con el consecutivo central ya no se puede adivinar el número antes de
+ * tiempo —depende de quién emita primero—, así que la pantalla dice «se
+ * asigna al emitir» en vez de enseñar un número que podría cambiar. El número
+ * llega al emitir, y desde ese momento acompaña al documento.
  */
-export function siguienteNumero(fecha = hoyIso()): string {
-  const anio = fecha.slice(0, 4);
-  const guardado = leer<{ anio: string; valor: number }>(CLAVE_CONSECUTIVO);
-  const valor = guardado?.anio === anio ? guardado.valor + 1 : 1;
-  escribir(CLAVE_CONSECUTIVO, { anio, valor });
-  return `COT-${anio}-${String(valor).padStart(4, '0')}`;
-}
-
-/** Número que tomaría la próxima cotización, sin consumirlo. */
-export function numeroPrevisto(fecha = hoyIso()): string {
-  const anio = fecha.slice(0, 4);
-  const guardado = leer<{ anio: string; valor: number }>(CLAVE_CONSECUTIVO);
-  const valor = guardado?.anio === anio ? guardado.valor + 1 : 1;
-  return `COT-${anio}-${String(valor).padStart(4, '0')}`;
-}
-
 export function cotizacionNueva(): Cotizacion {
   const fecha = hoyIso();
   return {
-    numero: numeroPrevisto(fecha),
+    numero: '',
     fecha,
     asesor: ASESORES[0]!,
     iva: catalogo.iva,

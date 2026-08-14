@@ -1,0 +1,14 @@
+node_modules/
+
+# Lo que arma `npm run build` a partir de la portada y del cotizador. Se
+# reconstruye entero en cada despliegue.
+publico/
+
+# Estado local de wrangler: la D1 de pruebas y los archivos del `wrangler dev`.
+.wrangler/
+
+.dev.vars
+*.local
+.DS_Store
+.vscode/
+.idea/

@@ -385,6 +385,11 @@
 
            Para cambiarle el destino a una que ya está: solo el `href`.
 
+           El cotizador es la única que NO lleva enlace externo: vive en este
+           mismo repositorio y se sirve desde este mismo dominio, en
+           `/cotizador/`. Por eso su tarjeta no abre pestaña nueva — no está
+           saliendo a ningún sitio.
+
            OJO con la página web: hoy apunta a la dirección de Netlify, que es
            donde está publicada por ahora. Cuando el dominio propio
            (byslogistics.com.co) quede en pie, hay que cambiar DOS enlaces: el
@@ -437,12 +442,7 @@
         </li>
 
         <li>
-          <a
-            class="tarjeta"
-            href="https://richardlovelove.github.io/Cotizador-Business-Supplies/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a class="tarjeta" href="./cotizador/">
             <span class="icono" aria-hidden="true">
               <!-- Documento con cálculo -->
               <svg
@@ -461,8 +461,8 @@
             </span>
             <h2>Cotizador</h2>
             <p>
-              Arma la cotización desde el listado de precios y genera el PDF formal y el mensaje de
-              WhatsApp listo para enviar.
+              Arma la cotización desde el listado de precios, genera el PDF formal y el mensaje de
+              WhatsApp, y guarda el historial de todo lo emitido.
             </p>
             <span class="ir">
               Abrir

@@ -1,0 +1,23 @@
+{
+  "name": "hub-business-supplies",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Hub de herramientas internas de B&S Logistics: la portada, el cotizador y el historial de cotizaciones.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "pantalla": "npm --prefix cotizador run dev",
+    "build": "node scripts/construir.mjs",
+    "test": "npm --prefix cotizador run test",
+    "tipos": "tsc --noEmit -p tsconfig.worker.json && npm --prefix cotizador run tipos",
+    "desplegar": "npm run build && wrangler deploy",
+    "migrar": "wrangler d1 migrations apply bys-cotizaciones --remote",
+    "migrar:local": "wrangler d1 migrations apply bys-cotizaciones --local",
+    "instalar": "npm install && npm --prefix cotizador install"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260811.1",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.42.0"
+  }
+}
